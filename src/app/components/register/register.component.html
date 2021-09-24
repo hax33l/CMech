@@ -1,0 +1,70 @@
+<div class="container-fluid">
+    <div class="row">
+        <mat-toolbar color="primary">
+            <span class="brand">CMech</span>
+        </mat-toolbar>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row login justify-content-center align-items-center">
+            <div class="col-lg-4 col-md-6 col-8 m-2">
+                <mat-card class="login-card">
+                    <mat-card-title class="text-center m-3">Create an account:</mat-card-title>
+                    <mat-card-content class="mx-2">
+                        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                            <div class="text-center my-1">
+                                <mat-form-field>
+                                    <input matInput placeholder="Nickname" formControlName="nickname">
+                                    <mat-hint *ngIf="registerForm.controls.nickname.errors">Nickname is required</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="text-center my-1">
+                                <mat-form-field>
+                                    <input matInput placeholder="Email" formControlName="email">
+                                    <mat-hint *ngIf="registerForm.controls.email.errors">Email is required</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="text-center my-1">
+                                <mat-form-field>
+                                    <input matInput placeholder="First name" formControlName="first_name">
+                                    <mat-hint *ngIf="registerForm.controls.first_name.errors">First name is required</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="text-center my-1">
+                                <mat-form-field>
+                                    <input matInput placeholder="Last name" formControlName="last_name">
+                                    <mat-hint *ngIf="registerForm.controls.last_name.errors">Last name is required</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="text-center my-1">
+                                <mat-form-field>
+                                    <input matInput placeholder="Phone" formControlName="phone">
+                                    <mat-hint *ngIf="registerForm.controls.phone.errors">Phone is required</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="text-center my-1">
+                                <mat-form-field>
+                                    <input matInput type="password" placeholder="Password" formControlName="password">
+                                    <mat-hint *ngIf="registerForm.controls.password.errors">Password is required</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="text-center my-1">
+                                <mat-form-field>
+                                    <input matInput type="password" placeholder="Password Confirmation" formControlName="password_confirmation">
+                                    <mat-hint *ngIf="registerForm.controls.password_confirmation.errors">Passwords not matching</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="text-center m-4">
+                                <button class="login-btn" mat-flat-button color="accent" [disabled]="!registerForm.valid" type="submit">Register</button>
+                                <mat-card-subtitle class="mt-4">
+                                    If you already have an account, click <a routerLink="/login">here</a>
+                                </mat-card-subtitle>
+                            </div>
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div> 
+</div>
+

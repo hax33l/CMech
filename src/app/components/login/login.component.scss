@@ -1,0 +1,17 @@
+mat-toolbar {
+    justify-content: center;
+}
+.brand {
+    letter-spacing: 0.1rem;
+    font-style: italic;
+    font-size: larger;
+}
+mat-form-field {
+    width: 70%;
+}
+.login-btn {
+    width: 50%;
+}
+.login {
+    min-height: calc( 85vh - 64px);
+}

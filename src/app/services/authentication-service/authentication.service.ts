@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { map, tap } from "rxjs/operators";
 
 export interface LoginForm {
@@ -26,11 +26,10 @@ export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
   login(loginForm: LoginForm) {  
-
     return this.http.post<any>('http://127.0.0.1:8000/api/login', {email: loginForm.email, password: loginForm.password}).pipe(
-      map(({ token }) => {
-        console.log('token');
+      map(({ token , user}) => {
         localStorage.setItem('user-token', token);
+        localStorage.setItem('nickname', user.nickname);
         return token;
       })
     )
@@ -38,6 +37,7 @@ export class AuthenticationService {
 
   logout() {
     localStorage.removeItem('user-token');
+    localStorage.removeItem('nickname');
   }
 
   register(user: User) {
@@ -45,5 +45,19 @@ export class AuthenticationService {
       tap(user => console.log(user)),
       map(user => user)
     )
+  }
+
+  isLoggedIn() {
+    if (localStorage.getItem('user-token'))
+      return true;
+    return false;
+  }
+
+  getToken() {
+    return (localStorage.getItem('user-token') || '{}');
+  }
+
+  getNickname() {
+    return localStorage.getItem('nickname');
   }
 }

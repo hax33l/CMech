@@ -17,13 +17,25 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { DefaultUserComponent } from './default-user/default-user.component';
+import { DefaultDashboardComponent } from './components/default-dashboard/default-dashboard.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatMenuModule } from '@angular/material/menu';
+import { AuthInterceptorProvider } from './http-interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavbarComponent,
+    DefaultUserComponent,
+    DefaultDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -40,9 +52,14 @@ import { RegisterComponent } from './components/register/register.component';
     NgbCarouselModule,
     FormsModule,
     ReactiveFormsModule,
+    LayoutModule,
+    MatSidenavModule,
+    MatListModule,
+    MatGridListModule,
+    MatMenuModule,
 
   ],
-  providers: [],
+  providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

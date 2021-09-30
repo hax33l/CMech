@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
       ]),
       password: new FormControl(null, [
         Validators.required,
-        Validators.minLength(3)
+        Validators.minLength(6)
       ])
       
     })
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.authService.login(this.loginForm.value).pipe(
-      map(token => this.router.navigate(['login']))
+      map(token => this.router.navigate(['d-user']))
     ).subscribe();
     
   }

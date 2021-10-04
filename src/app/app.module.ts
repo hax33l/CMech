@@ -8,6 +8,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatTableModule} from '@angular/material/table';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +27,7 @@ import { DefaultDashboardComponent } from './components/default-dashboard/defaul
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
 import { AuthInterceptorProvider } from './http-interceptors/auth.interceptor';
+import { CarDashboardComponent } from './components/car-dashboard/car-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { AuthInterceptorProvider } from './http-interceptors/auth.interceptor';
     RegisterComponent,
     NavbarComponent,
     DefaultUserComponent,
-    DefaultDashboardComponent
+    DefaultDashboardComponent,
+    CarDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,7 @@ import { AuthInterceptorProvider } from './http-interceptors/auth.interceptor';
     MatListModule,
     MatGridListModule,
     MatMenuModule,
-
+    MatTableModule,
   ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]

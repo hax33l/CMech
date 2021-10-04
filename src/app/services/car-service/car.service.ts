@@ -27,4 +27,8 @@ export class CarService {
   {
     return this.http.get<Car[]>(this.apiUrl + 'user_cars');
   }
+  getCarInfo(reg_number: string)
+  {
+    return this.http.get<any>(this.apiUrl + 'car_info/' + reg_number);
+  }
 }

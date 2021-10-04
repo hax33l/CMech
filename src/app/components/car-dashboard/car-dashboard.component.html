@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-3">
+      <mat-card  class="m-4">
+        <mat-card-title class="m-1"><h3>Car specification</h3></mat-card-title>
+        <mat-card-content *ngIf="car" class="m-1">
+            <p>Manufacturer: <b>{{ car.manufacturer }}</b></p>
+            <p>Model: <b>{{ car.model }}</b></p>
+            <p>Plate number: <b>{{ car.registration_number }}</b></p>
+            <p>Engine capacity: <b>{{ car.engine_capacity }}</b></p>
+            <p>Horse power: <b>{{ car.power }}</b></p>
+            <p>VIN: <b>{{ car.vin }}</b></p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-lg-9">
+      <mat-card class="m-4">
+        <mat-card-title class="m-1"><h3>Recent repairs</h3></mat-card-title>
+        <mat-card-content class="">
+          
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

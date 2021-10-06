@@ -10,6 +10,10 @@
   bottom: 15px;
 }
 
+.car-info-content {
+  word-wrap: break-word;
+}
+
 .more-button {
   position: absolute;
   top: 5px;
@@ -18,4 +22,19 @@
 
 .dashboard-card-content {
   text-align: center;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-row .mat-cell{
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent !important;
+  cursor: pointer;
+  transition: background-color 0.4s;
+}
+
+.mat-row:hover .mat-cell {
+  background-color: #575757;
 }

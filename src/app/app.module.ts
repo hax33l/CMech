@@ -28,6 +28,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
 import { AuthInterceptorProvider } from './http-interceptors/auth.interceptor';
 import { CarDashboardComponent } from './components/car-dashboard/car-dashboard.component';
+import { RepairsTableComponent } from './components/repairs-table/repairs-table.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,8 @@ import { CarDashboardComponent } from './components/car-dashboard/car-dashboard.
     NavbarComponent,
     DefaultUserComponent,
     DefaultDashboardComponent,
-    CarDashboardComponent
+    CarDashboardComponent,
+    RepairsTableComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +65,8 @@ import { CarDashboardComponent } from './components/car-dashboard/car-dashboard.
     MatGridListModule,
     MatMenuModule,
     MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]

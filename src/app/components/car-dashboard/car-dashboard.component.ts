@@ -51,6 +51,7 @@ export class CarDashboardComponent implements OnInit {
     this.carService.getCarInfo(this.reg_number).subscribe((data) => {
       this.dataSource = new MatTableDataSource<any>(data.car.repair_orders);
       this.car = data.car;
+      this.car.total_cost = data.total_cost;
       this.dataSource.paginator = this.paginator;
     });
     

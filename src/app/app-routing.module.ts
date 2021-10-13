@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AccountTypeComponent } from './components/account-type/account-type.component';
 import { CarDashboardComponent } from './components/car-dashboard/car-dashboard.component';
 import { DefaultDashboardComponent } from './components/default-dashboard/default-dashboard.component';
 import { LoginComponent } from './components/login/login.component';
+import { NewCarComponent } from './components/new-car/new-car.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DefaultUserComponent } from './default-user/default-user.component';
 import { HomeComponent } from './home/home.component';
@@ -11,12 +13,17 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'acc-type', component: AccountTypeComponent },
   { path: 'd-user', component: DefaultUserComponent, 
     children: [
     {
-      path: 'car/:reg_number', // child route path
-      component: CarDashboardComponent, // child route component that the router renders
+      path: 'car/:reg_number', 
+      component: CarDashboardComponent, 
     },
+    {
+      path: 'new-car',
+      component: NewCarComponent,
+    }
   ],
  },
 ];

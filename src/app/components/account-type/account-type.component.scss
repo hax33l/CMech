@@ -1,0 +1,45 @@
+.row {
+    min-height: 70vh;
+}
+.card {
+    border-color: rgb(209, 209, 209);
+    cursor: pointer;
+    width: 17rem; 
+    height: 17rem;
+    padding-left: 0px;
+    padding-right: 0px;
+    transition: width 0.3s, height 0.3s;
+}
+.card:hover {
+    width: 19rem;
+    height: 19rem;
+}
+.employee-card {
+    background-image: url("../../../assets/car-mech-img.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.user-card {
+    background-image: url("../../../assets/mech-handshake.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.owner-card {
+    background-image: url("../../../assets/owner.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.card-body {
+    backdrop-filter: grayscale(0.8) blur(2px); 
+    transition: backdrop-filter 0.6s;
+}
+.card-body:hover {
+    backdrop-filter: grayscale(0.0) blur(0px);
+}
+.card-text {
+    text-align: center;
+    color: white;
+    text-shadow: 0 0 11px #9c27b0, 0 0 5px #000000;
+    letter-spacing: 1px;
+    font-weight: bold;
+}

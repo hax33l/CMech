@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class DefaultUserComponent {
 
   cars: Car[] = [];
+  nickname: any;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -33,6 +34,7 @@ export class DefaultUserComponent {
       this.cars = data;
       }
     );
+    this.nickname = localStorage.getItem("nickname");
   }
   
   onLogout(){

@@ -1,0 +1,24 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-sm-12">
+            <div class="row justify-content-center align-items-center ">
+                <div class="card employee-card m-3 d-flex">
+                    <div class="card-body align-items-center d-flex justify-content-center">
+                      <h1 class="card-text">Employee</h1>
+                    </div>
+                </div>
+                <div class="card user-card m-3 d-flex" (click)="onClickRedirect('d-user')">
+                    <div class="card-body align-items-center d-flex justify-content-center">
+                        <h1 class="card-text">User</h1>
+                    </div>
+                </div>
+                <div class="card owner-card m-3 d-flex">
+                    <div class="card-body align-items-center d-flex justify-content-center">
+                      <p class="card-text mat-h1">Owner</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

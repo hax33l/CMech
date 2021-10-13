@@ -31,4 +31,10 @@ export class CarService {
   {
     return this.http.get<any>(this.apiUrl + 'car_info/' + reg_number);
   }
+  addCar(car: Car){
+    return this.http.post<any>(this.apiUrl + 'cars', car).pipe(
+      map(car => car)
+    )
+  }
+  
 }

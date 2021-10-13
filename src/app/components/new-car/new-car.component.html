@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    <div class="row login justify-content-center align-items-center align-middle">
+            <div class="col-xl-4 col-lg-6 col-md-6 col-8 m-4">
+                <mat-card class="login-card">
+                    <mat-card-title class="text-center m-3">Create a new car:</mat-card-title>
+                    <mat-card-content class="mx-2">
+                        <form [formGroup]="newCarForm" (ngSubmit)="onSubmit()">
+                            <div class="text-center my-1">
+                                <mat-form-field>
+                                    <input matInput placeholder="Manufacturer" formControlName="manufacturer">
+                                    <mat-hint *ngIf="newCarForm.controls.manufacturer.errors">Manufacturer is required</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="text-center my-1">
+                                <mat-form-field>
+                                    <input matInput placeholder="Model" formControlName="model">
+                                    <mat-hint *ngIf="newCarForm.controls.model.errors">Model is required</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="text-center my-1">
+                                <mat-form-field>
+                                    <input matInput placeholder="Registration number" formControlName="registration_number">
+                                    <mat-hint *ngIf="newCarForm.controls.registration_number.errors">Registration number is required</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="text-center my-1">
+                                <mat-form-field>
+                                    <input type="number" matInput placeholder="Engine capacity [cc]" formControlName="engine_capacity">
+                                    <mat-hint *ngIf="newCarForm.controls.engine_capacity.errors">Engine capacity is required</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="text-center my-1">
+                                <mat-form-field>
+                                    <input type="number" matInput placeholder="Power [HP]" formControlName="power">
+                                    <mat-hint *ngIf="newCarForm.controls.power.errors">Power is required</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="text-center my-1">
+                                <mat-form-field>
+                                    <input matInput placeholder="VIN" formControlName="vin">
+                                    <mat-hint *ngIf="newCarForm.controls.vin.errors">VIN is required</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="text-center m-4">
+                                <button class="add-btn" mat-flat-button color="accent" [disabled]="!newCarForm.valid" type="submit">Add</button>
+                            </div>
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div> 
+</div>

@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.authService.login(this.loginForm.value).pipe(
-      map(token => this.router.navigate(['d-user']))
+      map(token => this.router.navigate(['acc-type']))
     ).subscribe();
     
   }

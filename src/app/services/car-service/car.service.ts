@@ -36,5 +36,8 @@ export class CarService {
       map(car => car)
     )
   }
+  getRepairInfo(reg_number: string, key: string){
+    return this.http.get<any>(this.apiUrl + 'repair_info/' + reg_number + '/' + key);
+  }
   
 }

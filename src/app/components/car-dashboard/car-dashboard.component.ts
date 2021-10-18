@@ -7,6 +7,8 @@ import { Car, CarService } from 'src/app/services/car-service/car.service';
 import { Observable } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { RepairDialogComponent } from '../repair-dialog/repair-dialog.component';
 
 export interface RepairOrder {
   id: number;
@@ -37,7 +39,8 @@ export class CarDashboardComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private carService: CarService
+    private carService: CarService,
+    private dialog: MatDialog
   )  {  }
 
   ngOnInit(): void {
@@ -53,7 +56,15 @@ export class CarDashboardComponent implements OnInit {
       this.car = data.car;
       this.car.total_cost = data.total_cost;
       this.dataSource.paginator = this.paginator;
-    });
-    
+    });    
+  }
+
+  openRepairDialog(row: any){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.maxHeight = '70vh';
+    dialogConfig.maxWidth = '90vh';
+    dialogConfig.data = row;
+    this.dialog.open(RepairDialogComponent, dialogConfig);
+    console.log(row)
   }
 }

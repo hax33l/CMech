@@ -32,6 +32,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { NewCarComponent } from './components/new-car/new-car.component';
 import { AccountTypeComponent } from './components/account-type/account-type.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ViewRepairComponent } from './components/view-repair/view-repair.component';
+import { RepairDialogComponent } from './components/repair-dialog/repair-dialog.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +48,8 @@ import { AccountTypeComponent } from './components/account-type/account-type.com
     CarDashboardComponent,
     NewCarComponent,
     AccountTypeComponent,
+    ViewRepairComponent,
+    RepairDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +74,7 @@ import { AccountTypeComponent } from './components/account-type/account-type.com
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatDialogModule
   ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]

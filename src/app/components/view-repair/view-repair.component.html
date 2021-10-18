@@ -1,0 +1,99 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row justify-content-center my-4">
+        <div class="col-xl-7 col-md-9">
+            <mat-card class="m-1">
+                <mat-card-title class="m-1">
+                  <h3>Status updates</h3>
+                </mat-card-title>
+                <mat-card-content class="">
+                  <div class="table-responsive">
+                    <table mat-table *ngIf="dataSource; else noRepairsBlock" [dataSource]="dataSource" class="mat-elevation-z8">
+                      
+        
+                      <ng-container matColumnDef="created_at">
+                        <th mat-header-cell *matHeaderCellDef> Created at </th>
+                        <td mat-cell *matCellDef="let element"> {{element.created_at | date}} </td>
+                      </ng-container>
+                      
+                      <ng-container matColumnDef="title">
+                        <th mat-header-cell *matHeaderCellDef> Title </th>
+                        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                      </ng-container>
+        
+                      <ng-container matColumnDef="description">
+                        <th mat-header-cell *matHeaderCellDef> Description </th>
+                        <td class="wrap" mat-cell *matCellDef="let element"> {{element.description}} </td>
+                      </ng-container>
+        
+                      <ng-container matColumnDef="cost">
+                        <th mat-header-cell *matHeaderCellDef> Cost </th>
+                        <td mat-cell *matCellDef="let element">
+                            <div *ngIf="element.cost; else elseBlock">{{ element.cost }} $</div>
+                            <ng-template #elseBlock>0 $</ng-template></td>
+                      </ng-container>
+        
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  </div>
+                  <ng-template #noRepairsBlock>
+                    <p class="m-1">There aren't any status updates available for this car.</p>
+                  </ng-template>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-xl-3 col-md-3">
+            <mat-card class="m-1">
+                <mat-card-title>
+                    <h3>Order details</h3>
+                </mat-card-title>
+                <mat-card-content *ngIf="repair; else noDetailsBlock">                    
+                    <div class="row">
+                        <div class="col-4">
+                            <p>Status:</p>
+                        </div>
+                        <div class="col-8 text-end">
+                            <p>{{ repair.status }}</p>
+                        </div>
+                    </div>                  
+                    <div class="row">
+                        <div class="col-4">
+                            <p>Category:</p>
+                        </div>
+                        <div class="col-8 text-end">
+                            <p>{{ repair.category}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <p>Title:</p>
+                        </div>
+                        <div class="col-8 text-end">
+                            <p>{{ repair.title }}</p>
+                        </div>
+                    </div>  
+                    <div class="row">
+                        <div class="col-4">
+                            <p>Description:</p>
+                        </div>
+                        <div class="col-8 text-end">
+                            <p>{{ repair.description }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <p>Created:</p>
+                        </div>
+                        <div class="col-8 text-end">
+                            <p>{{ repair.created_at | date:'medium'}}</p>
+                        </div>
+                    </div>
+                </mat-card-content>
+                <ng-template #noDetailsBlock>
+                    <p class="m-1">No details available.</p>
+                </ng-template>
+            </mat-card>
+        </div>
+    </div>
+</div>

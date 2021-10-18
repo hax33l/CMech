@@ -1,5 +1,37 @@
 <app-navbar></app-navbar>
 <div class="container">
+    <div class="row header d-flex align-items-center">
+        <div class="row justify-content-center">
+            <div class="col-6 text-center">
+                <h1>Pull up your repair order:</h1>
+            </div>
+        </div>
+        <div class="row justify-content-center">            
+            <div class="col-6 col-sm-5 col-md-4 col-lg-3">
+                <mat-form-field class="search-input" appearance="fill">
+                    <mat-label>Plate number</mat-label>
+                    <input matInput placeholder="e.g. OPO2137" [(ngModel)]="registration_number">
+                    <mat-icon matSuffix>directions_car</mat-icon>
+                </mat-form-field>
+            </div>
+            <div class="col-6 col-sm-5 col-md-4 col-lg-3">
+                <mat-form-field class="search-input" appearance="fill">
+                    <mat-label>Secret key</mat-label>
+                    <input matInput placeholder="e.g. 1234567" [(ngModel)]="key">
+                    <mat-icon matSuffix>vpn_key</mat-icon>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row justify-content-center">        
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+                <button class="search-button" mat-raised-button (click)="onSearch()">
+                    <mat-icon>arrow_forward</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <mat-divider class="row-margin"></mat-divider>
     <div class="row my-4">
         <div class="col title text-center mt-4">
             <h1>Make a new account or sign in if you already have one below:</h1>

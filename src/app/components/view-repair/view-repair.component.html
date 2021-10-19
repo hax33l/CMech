@@ -1,5 +1,36 @@
 <app-navbar></app-navbar>
 <div class="container">
+    <div class="row justify-content-center text-center my-4 py-4 new-block">
+        <div class="col-3 col-sm-3 col-md-3 col-lg-2" [ngClass]="(status == 'New' || status == 'In progress' || status == 'Order ready') ? 'colored' : 'greyedOut'">
+            <img style="height:auto;" class="img-fluid" [ngClass]="{'jump-animation': status == 'New'}" src="../assets/test.png" alt="">
+            <h2 *ngIf="(status == 'New' || status == 'In progress' || status == 'Order ready')" class="my-2">New</h2>
+        </div>
+        <div class="col-1 col-sm-1 col-md-1 col-lg-1 arrow1-block " >
+            <div *ngIf="(status == 'In progress' || status == 'Order ready') ;else arrow1">
+                <img style="height:50px;" class="img-fluid" src="../assets/right-arrow2.png" alt="arrow">
+            </div>    
+            <ng-template #arrow1>
+                <img style="height:50px;" class="img-fluid" src="../assets/right-arrow.png" alt="arrow">
+            </ng-template>
+        </div>
+        <div class="col-3 col-sm-3 col-md-3 col-lg-2  in-progress-block" [ngClass]="(status == 'In progress' || status == 'Order ready') ? 'colored' : 'greyedOut'">
+            <img style="height:auto;" class="img-fluid" [ngClass]="{'jump-animation': status == 'In progress'}" src="../assets/mechanic.png" alt="">
+            <h2 *ngIf="(status == 'In progress' || status == 'Order ready')" class="my-2">In progress</h2>
+        </div>
+        <div class="col-1 col-sm-1 col-md-1 col-lg-1 arrow2-block">
+            <div *ngIf="status === 'Order ready';else arrow2">
+                <img style="height:50px;" class="img-fluid" src="../assets/right-arrow2.png" alt="arrow">
+            </div>    
+            <ng-template #arrow2>
+                <img style="height:50px;" class="img-fluid" src="../assets/right-arrow.png" alt="arrow">
+            </ng-template>
+        </div>
+        
+        <div class="col-3 col-sm-3 col-md-3 col-lg-2 ready-block" [ngClass]="status === 'Order ready' ? 'colored' : 'greyedOut'">
+            <img style="height:auto;" class="img-fluid" [ngClass]="{'jump-animation': status == 'Order ready'}" src="../assets/garage.png" alt="">
+            <h2 *ngIf="status === 'Order ready'" class="my-2">Repair ready</h2>
+        </div>
+    </div>
     <div class="row justify-content-center my-4">
         <div class="col-xl-7 col-md-9">
             <mat-card class="m-1">
@@ -94,6 +125,16 @@
                     <p class="m-1">No details available.</p>
                 </ng-template>
             </mat-card>
+            <div class="m-1">
+                <mat-form-field #tooltip="matTooltip"
+                matTooltip="Click to copy"
+                [matTooltipPosition]="position.value"
+                matTooltipHideDelay="1000" [cdkCopyToClipboard]="link" class="input-full-width my-4" appearance="fill">
+                    <mat-label>Copy tracking link</mat-label>
+                    <input  matInput disabled value="{{ link }}">
+                    <mat-icon class="hand-cursor" [cdkCopyToClipboard]="link" matSuffix>content_copy</mat-icon>                    
+                </mat-form-field>
+            </div>
         </div>
     </div>
 </div>

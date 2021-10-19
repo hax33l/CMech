@@ -35,6 +35,8 @@ import { AccountTypeComponent } from './components/account-type/account-type.com
 import { MatDialogModule } from '@angular/material/dialog';
 import { ViewRepairComponent } from './components/view-repair/view-repair.component';
 import { RepairDialogComponent } from './components/repair-dialog/repair-dialog.component';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,9 @@ import { RepairDialogComponent } from './components/repair-dialog/repair-dialog.
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatDialogModule
+    MatDialogModule,
+    ClipboardModule,
+    MatTooltipModule
   ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]

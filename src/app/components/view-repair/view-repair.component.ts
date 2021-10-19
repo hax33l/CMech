@@ -1,6 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import { TooltipPosition } from '@angular/material/tooltip';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CarService } from 'src/app/services/car-service/car.service';
 
 @Component({
@@ -14,8 +16,13 @@ export class ViewRepairComponent implements OnInit {
   key: string = '';
   repair: any;  
   dataSource!: MatTableDataSource<any>;
-  
+  status: string = '';
+  link: string = '';
+  positionOptions: TooltipPosition[] = ['below', 'above', 'left', 'right'];
+  position = new FormControl(this.positionOptions[3]);
+
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private carService: CarService,
   ) { }
@@ -26,7 +33,7 @@ export class ViewRepairComponent implements OnInit {
       this.key = param.key;
     });
 
-    console.log(this.reg_number + this.key)
+    this.link = this.router.url
     this.loadRepairData(this.reg_number,this.key);
 
   }
@@ -34,6 +41,8 @@ export class ViewRepairComponent implements OnInit {
   loadRepairData(reg_number: string, key: string){
     this.carService.getRepairInfo(reg_number,key).subscribe((data) => {
       this.repair = data.repair_order;
+      this.status = data.repair_order.status;
+      console.log(this.status)
       this.dataSource = new MatTableDataSource<any>(data.statuses);
       console.log(this.dataSource)
     });

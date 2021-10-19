@@ -5,7 +5,9 @@
 table {
     width: 100%;
 }
-
+.input-full-width {
+    width: 100%;
+}
 .mat-elevation-z8 {
     overflow-x: auto;
 }
@@ -47,4 +49,38 @@ table {
 }
 .wrap {
     white-space: normal !important;
+}
+.arrow1-block {
+    display: flex;
+    align-items: center;
+}
+.arrow2-block {
+    display: flex;
+    align-items: center;
+}
+
+.colored {
+    filter: grayscale(0);
+}
+.greyedOut {
+    filter: grayscale(1);
+}
+
+.jump-animation {
+    animation: jump 4000ms ease infinite;
+    animation-iteration-count: infinite;
+    transform-origin: bottom;
+}
+@keyframes jump {
+    0%   { transform: scale(1,1)    translateY(0); }
+    10%  { transform: scale(1.05,.95) translateY(0); }
+    22%  { transform: scale(.9,1.1) translateY(-15px); }
+    28%  { transform: scale(1,1)    translateY(0); }
+    38%  { transform: scale(1,1)    translateY(-6px); }
+    45%  { transform: scale(1,1)    translateY(0); }
+    50%  { transform: scale(1,1)    translateY(-3px); }
+    100% { transform: scale(1,1)    translateY(0); }
+}
+.hand-cursor {
+    cursor:pointer;
 }

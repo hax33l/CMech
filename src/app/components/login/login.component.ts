@@ -37,9 +37,15 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.invalid) {
       return;
     }
-    this.authService.login(this.loginForm.value).pipe(
-      map(token => this.router.navigate(['acc-type']))
+    this.authService.login(this.loginForm.value)
+    .pipe(
+      map(role => {
+        if ( role == 'user'){
+          this.router.navigate(['d-user'])
+        } else if ( role == 'employee'){
+          this.router.navigate(['workshop'])
+        }
+      })
     ).subscribe();
-    
   }
 }

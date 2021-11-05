@@ -49,6 +49,16 @@
                                     <mat-hint *ngIf="registerForm.controls.password_confirmation.errors">Passwords not matching</mat-hint>
                                 </mat-form-field>
                             </div>
+                            <div class="text-center my-1">
+                                <mat-form-field>
+                                    <mat-label>Account type</mat-label>
+                                    <mat-select formControlName="role">
+                                        <mat-option value="user">Default user</mat-option>
+                                        <mat-option value="employee">Employee</mat-option>
+                                        <mat-option value="owner">Workshop owner</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
                             <div class="text-center m-4">
                                 <button class="login-btn" mat-flat-button color="accent" [disabled]="!registerForm.valid" type="submit">Register</button>
                                 <mat-card-subtitle class="mt-4">

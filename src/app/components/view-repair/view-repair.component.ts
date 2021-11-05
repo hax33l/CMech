@@ -42,9 +42,7 @@ export class ViewRepairComponent implements OnInit {
     this.carService.getRepairInfo(reg_number,key).subscribe((data) => {
       this.repair = data.repair_order;
       this.status = data.repair_order.status;
-      console.log(this.status)
       this.dataSource = new MatTableDataSource<any>(data.statuses);
-      console.log(this.dataSource)
     });
   }
 }

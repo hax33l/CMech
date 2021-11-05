@@ -29,7 +29,6 @@ export class RepairDialogComponent implements OnInit {
     this.carService.getRepairInfo(reg_number,key).subscribe((data) => {
       this.repair = data.repair_order;
       this.dataSource = new MatTableDataSource<any>(data.statuses);
-      console.log(this.dataSource)
     });
   }
   openTrackingPage(){

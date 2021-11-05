@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators }
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/services/authentication-service/authentication.service';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-register',
@@ -21,6 +22,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
+      role: [null, [Validators.required]],
       nickname: [null, [
         Validators.required,
         Validators.minLength(6)

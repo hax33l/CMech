@@ -65,6 +65,5 @@ export class CarDashboardComponent implements OnInit {
     dialogConfig.maxWidth = '90vh';
     dialogConfig.data = row;
     this.dialog.open(RepairDialogComponent, dialogConfig);
-    console.log(row)
   }
 }

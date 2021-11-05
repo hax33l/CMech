@@ -37,6 +37,9 @@ import { ViewRepairComponent } from './components/view-repair/view-repair.compon
 import { RepairDialogComponent } from './components/repair-dialog/repair-dialog.component';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
+import { EmployeeUserComponent } from './employee-user/employee-user.component';
+import { ChooseWorkshopComponent } from './components/choose-workshop/choose-workshop.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +55,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     AccountTypeComponent,
     ViewRepairComponent,
     RepairDialogComponent,
+    EmployeeUserComponent,
+    ChooseWorkshopComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,7 +83,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSortModule,
     MatDialogModule,
     ClipboardModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSelectModule
   ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]

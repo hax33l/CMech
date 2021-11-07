@@ -40,6 +40,8 @@ export class AuthenticationService {
   }
 
   logout() {
+    if( localStorage.getItem('workshop_id') )
+      localStorage.removeItem('workshop_id');
     localStorage.removeItem('user-token');
     localStorage.removeItem('nickname');
   }

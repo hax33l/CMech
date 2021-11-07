@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,5 +6,16 @@ import { Injectable } from '@angular/core';
 })
 export class EmployeeService {
 
-  constructor() { }
+  apiUrl = 'http://127.0.0.1:8000/api/';
+
+  constructor(private http: HttpClient) { }
+
+  getEmployeeWorkshops()
+  {
+    return this.http.get<any>(this.apiUrl + 'employee/info');
+  }
+  getWorkshopData()
+  {
+    return this.http.get<any>(this.apiUrl + '/employee/workshop_info');
+  }
 }

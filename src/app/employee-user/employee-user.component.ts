@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Car, CarService } from '../services/car-service/car.service';
 import { AuthenticationService } from '../services/authentication-service/authentication.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-user',
@@ -24,16 +24,13 @@ export class EmployeeUserComponent implements OnInit {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private carService: CarService,
+    private route: ActivatedRoute,
     private authService: AuthenticationService,
     private router: Router,
     ) {}
 
   ngOnInit(): void {
-    this.carService.getUserCars().subscribe(data => {
-      this.cars = data;
-      }
-    );
+    
     this.nickname = localStorage.getItem("nickname");
   }
   

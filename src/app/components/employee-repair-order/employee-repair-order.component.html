@@ -1,0 +1,173 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-xl-2 col-lg-3">
+            <div class="row">
+                <div class="col-lg-12 col-sm-6">
+                    <mat-card class="my-4">
+                        <mat-card-title class="m-1">
+                            <h3>Repair orders info:</h3>
+                        </mat-card-title>
+                        <mat-card-content class="m-1">
+                            <p>New orders: <b>2</b></p>
+                            <p>Orders in progress: <b>1</b></p>
+                            <p>Repairs complete: <b>157</b></p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="col-lg-12 col-sm-6 text-center">
+                    <mat-card class="card-button my-4">
+                          <mat-card-content>
+                              <h3>New repair</h3>
+                          </mat-card-content>
+                    </mat-card>
+                  </div>
+            </div>
+        </div>
+        <div class="col-xl-7 col-lg-8">
+            <mat-card class="m-4">
+                <mat-card-content class="m-1">
+                    <mat-tab-group>
+                        <mat-tab label="New">
+                            <div class="table-responsive">
+                                <table mat-table *ngIf="new;  else noRepairsBlock" [dataSource]="new"
+                                    class="mat-elevation-z8">
+
+                                    <ng-container matColumnDef="id">
+                                        <th mat-header-cell *matHeaderCellDef> Id. </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="title">
+                                        <th mat-header-cell *matHeaderCellDef> Title </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="category">
+                                        <th mat-header-cell *matHeaderCellDef> Category </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="description">
+                                        <th mat-header-cell *matHeaderCellDef> Description </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="status">
+                                        <th mat-header-cell *matHeaderCellDef> Status </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="created_at">
+                                        <th mat-header-cell *matHeaderCellDef> Created at </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.created_at | date}} </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                </table>
+                            </div>
+                            <mat-paginator #newPag [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                                aria-label="Select page of periodic elements">
+                            </mat-paginator>
+                            <ng-template #noRepairsBlock>
+                                <p class="my-4">There aren't any new repair orders.</p>
+                            </ng-template>
+                        </mat-tab>
+                        <mat-tab label="In progress">
+                            <div class="table-responsive">
+                                <table mat-table *ngIf="in_progress;  else noRepairsBlock" [dataSource]="in_progress"
+                                    class="mat-elevation-z8">
+
+                                    <ng-container matColumnDef="id">
+                                        <th mat-header-cell *matHeaderCellDef> Id. </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="title">
+                                        <th mat-header-cell *matHeaderCellDef> Title </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="category">
+                                        <th mat-header-cell *matHeaderCellDef> Category </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="description">
+                                        <th mat-header-cell *matHeaderCellDef> Description </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="status">
+                                        <th mat-header-cell *matHeaderCellDef> Status </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="created_at">
+                                        <th mat-header-cell *matHeaderCellDef> Created at </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.created_at | date}} </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                </table>
+                            </div>
+                            <mat-paginator #inProgressPag [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                                aria-label="Select page of periodic elements">
+                            </mat-paginator>
+                            <ng-template #noRepairsBlock>
+                                <p class="my-4">There aren't any new repair orders.</p>
+                            </ng-template>
+                        </mat-tab>
+                        <mat-tab label="Ready">
+                            <div class="table-responsive">
+                                <table mat-table *ngIf="ready;  else noRepairsBlock" [dataSource]="ready"
+                                    class="mat-elevation-z8">
+
+                                    <ng-container matColumnDef="id">
+                                        <th mat-header-cell *matHeaderCellDef> Id. </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="title">
+                                        <th mat-header-cell *matHeaderCellDef> Title </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="category">
+                                        <th mat-header-cell *matHeaderCellDef> Category </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="description">
+                                        <th mat-header-cell *matHeaderCellDef> Description </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="status">
+                                        <th mat-header-cell *matHeaderCellDef> Status </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="created_at">
+                                        <th mat-header-cell *matHeaderCellDef> Created at </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.created_at | date}} </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                </table>
+                            </div>
+                            <mat-paginator #rdyPag [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                                aria-label="Select page of periodic elements">
+                            </mat-paginator>
+                            <ng-template #noRepairsBlock>
+                                <p class="my-4">There aren't any new repair orders.</p>
+                            </ng-template>
+                        </mat-tab>
+                    </mat-tab-group>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

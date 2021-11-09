@@ -4,6 +4,9 @@ import { AccountTypeComponent } from './components/account-type/account-type.com
 import { CarDashboardComponent } from './components/car-dashboard/car-dashboard.component';
 import { ChooseWorkshopComponent } from './components/choose-workshop/choose-workshop.component';
 import { DefaultDashboardComponent } from './components/default-dashboard/default-dashboard.component';
+import { EmployeeDashboardComponent } from './components/employee-dashboard/employee-dashboard.component';
+import { EmployeePartStorageComponent } from './components/employee-part-storage/employee-part-storage.component';
+import { EmployeeRepairOrderComponent } from './components/employee-repair-order/employee-repair-order.component';
 import { LoginComponent } from './components/login/login.component';
 import { NewCarComponent } from './components/new-car/new-car.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -33,9 +36,24 @@ const routes: Routes = [
       component: NewCarComponent,
     }
   ],
- },
- { path: 'workshop', component: ChooseWorkshopComponent },
- { path: 'e-user', component: EmployeeUserComponent },
+  },
+  { path: 'workshop', component: ChooseWorkshopComponent },
+  { path: 'e-user', component: EmployeeUserComponent,
+    children: [
+      {
+        path: '', 
+        component: EmployeeDashboardComponent, 
+      },
+      {
+        path: 'storage', 
+        component: EmployeePartStorageComponent, 
+      },
+      {
+        path: 'rep-orders', 
+        component: EmployeeRepairOrderComponent, 
+      },
+    ],
+  },
 ];
 
 @NgModule({

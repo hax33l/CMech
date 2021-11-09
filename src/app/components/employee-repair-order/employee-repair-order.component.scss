@@ -1,0 +1,63 @@
+table {
+    width: 100%;
+}
+
+.mat-elevation-z8 {
+    overflow-x: auto;
+}
+
+.mat-row .mat-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent !important;
+    cursor: pointer;
+    transition: background-color 0.4s;
+}
+
+.mat-row:hover .mat-cell {
+    background-color: #575757;
+}
+
+.coins {
+    max-height: 75px;
+    width: auto;
+}
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+
+    .mat-table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 1rem;
+        display: table;
+        border-collapse: collapse;
+        margin: 0px;
+    }
+
+    .mat-row,
+    .mat-header-row {
+        display: table-row;
+    }
+
+    .mat-cell,
+    .mat-header-cell {
+        word-wrap: initial;
+        display: table-cell;
+        padding: 0px 5px;
+        line-break: unset;
+        width: auto;
+        white-space: nowrap;
+        overflow: hidden;
+        vertical-align: middle;
+    }
+}
+
+.card-button {
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+.card-button:hover {
+    transform: scale(1.1);
+}

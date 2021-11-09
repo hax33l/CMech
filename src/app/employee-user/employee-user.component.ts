@@ -5,6 +5,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import { Car, CarService } from '../services/car-service/car.service';
 import { AuthenticationService } from '../services/authentication-service/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EmployeeService } from '../services/employee-service/employee.service';
 
 @Component({
   selector: 'app-employee-user',
@@ -27,6 +28,7 @@ export class EmployeeUserComponent implements OnInit {
     private route: ActivatedRoute,
     private authService: AuthenticationService,
     private router: Router,
+    private employeeService: EmployeeService,
     ) {}
 
   ngOnInit(): void {

@@ -16,6 +16,10 @@ export class EmployeeService {
   }
   getWorkshopData()
   {
-    return this.http.get<any>(this.apiUrl + '/employee/workshop_info');
+    return this.http.get<any>(this.apiUrl + 'employee/workshop_info');
+  }
+  getWorkshopRepairs()
+  {
+    return this.http.post<any>(this.apiUrl + 'employee/repairs_info', {workshop_id: localStorage.getItem('workshop_id')});
   }
 }

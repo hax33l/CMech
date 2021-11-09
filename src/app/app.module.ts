@@ -40,6 +40,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { EmployeeUserComponent } from './employee-user/employee-user.component';
 import { ChooseWorkshopComponent } from './components/choose-workshop/choose-workshop.component';
+import { EmployeeDashboardComponent } from './components/employee-dashboard/employee-dashboard.component';
+import { EmployeeRepairOrderComponent } from './components/employee-repair-order/employee-repair-order.component';
+import { EmployeePartStorageComponent } from './components/employee-part-storage/employee-part-storage.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -57,6 +61,9 @@ import { ChooseWorkshopComponent } from './components/choose-workshop/choose-wor
     RepairDialogComponent,
     EmployeeUserComponent,
     ChooseWorkshopComponent,
+    EmployeeDashboardComponent,
+    EmployeeRepairOrderComponent,
+    EmployeePartStorageComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,7 +91,8 @@ import { ChooseWorkshopComponent } from './components/choose-workshop/choose-wor
     MatDialogModule,
     ClipboardModule,
     MatTooltipModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTabsModule
   ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]

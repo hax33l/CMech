@@ -1,5 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from "rxjs/operators";
+
+export interface RepairOrder {
+  registration_number: string,
+  email: string,
+  category: string,
+  description: string,
+  title: string,
+  status: string,
+  workshop_id: string
+}
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +32,11 @@ export class EmployeeService {
   getWorkshopRepairs()
   {
     return this.http.post<any>(this.apiUrl + 'employee/repairs_info', {workshop_id: localStorage.getItem('workshop_id')});
+  }
+  addRepairOrder(repairOrder: RepairOrder)
+  {
+    console.log(repairOrder)
+    return this.http.post<any>(this.apiUrl + 'employee/add_repair', repairOrder)
+    
   }
 }

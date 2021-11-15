@@ -2,7 +2,9 @@ import { Component, OnInit, ViewChild  } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { EmployeeService } from 'src/app/services/employee-service/employee.service';
-
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { NewRepairDialogComponent } from '../new-repair-dialog/new-repair-dialog.component';
+import { Router } from '@angular/router';
 
 export interface RepairOrder {
   id: number;
@@ -35,6 +37,8 @@ export class EmployeeRepairOrderComponent implements OnInit {
 
   constructor(
     private employeeService: EmployeeService,
+    private dialog: MatDialog,
+    private router: Router
   ) {   }
   
 
@@ -52,4 +56,20 @@ export class EmployeeRepairOrderComponent implements OnInit {
 
   }
 
+  openNewRepairDialog(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.maxHeight = '80vh';
+    dialogConfig.maxWidth = '90vh';
+    const dialogRef = this.dialog.open(NewRepairDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if( result == true){
+        let currentUrl = this.router.url;
+        this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+            this.router.navigate([currentUrl]);
+        });
+      }
+
+    });
+  }
 }

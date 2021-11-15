@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <div class="row">
+        <h2 mat-dialog-title>New repair order</h2>
+    </div>
+    <form [formGroup]="repairForm" (ngSubmit)="onSubmit()">
+        <mat-dialog-content>
+            <div class="row my-2">
+                <div class="col-12 col-sm-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Category</mat-label>
+                        <mat-select formControlName="category" required>
+                            <mat-option value="Repair">Repair</mat-option>
+                            <mat-option value="Inspection">Inspection</mat-option>
+                            <mat-option value="Tuning">Tuning</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Plate number</mat-label>
+                        <input matInput formControlName="registration_number" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-12 ">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Title</mat-label>
+                        <textarea matInput formControlName="title" required></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="col-12 ">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput formControlName="description" required></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close>Cancel</button>
+            <button mat-button mat-dialog-close type="submit" [disabled]="!repairForm.valid" [mat-dialog-close]="true">Create</button>
+        </mat-dialog-actions>
+    </form>
+</div>

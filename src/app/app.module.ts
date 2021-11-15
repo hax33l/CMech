@@ -44,6 +44,7 @@ import { EmployeeDashboardComponent } from './components/employee-dashboard/empl
 import { EmployeeRepairOrderComponent } from './components/employee-repair-order/employee-repair-order.component';
 import { EmployeePartStorageComponent } from './components/employee-part-storage/employee-part-storage.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { NewRepairDialogComponent } from './components/new-repair-dialog/new-repair-dialog.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     EmployeeDashboardComponent,
     EmployeeRepairOrderComponent,
     EmployeePartStorageComponent,
+    NewRepairDialogComponent,
   ],
   imports: [
     BrowserModule,

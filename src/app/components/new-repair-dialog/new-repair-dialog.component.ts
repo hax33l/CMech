@@ -29,8 +29,6 @@ export class NewRepairDialogComponent implements OnInit {
   onSubmit(){
     this.repairForm.value.workshop_id = localStorage.getItem('workshop_id');
     this.repairForm.value.status = 'New';
-    this.employeeService.addRepairOrder(this.repairForm.value).subscribe( data => {
-      console.log(data)
-    })
+    this.employeeService.addRepairOrder(this.repairForm.value).subscribe();
   }
 }

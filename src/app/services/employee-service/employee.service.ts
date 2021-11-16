@@ -35,8 +35,18 @@ export class EmployeeService {
   }
   addRepairOrder(repairOrder: RepairOrder)
   {
-    console.log(repairOrder)
     return this.http.post<any>(this.apiUrl + 'employee/add_repair', repairOrder)
-    
+  }
+  getRepairStatuses(rep_id: string)
+  {
+    return this.http.get<any>(this.apiUrl + 'employee/add_repair/' + rep_id);
+  }
+  addRepairStatus(repairStatus: any)
+  {
+    return this.http.post<any>(this.apiUrl + 'employee/statuses', repairStatus)
+  }
+  updateRepairStatus(value: any, order_id: any)
+  {
+    return this.http.put<any>(this.apiUrl + 'employee/add_repair/'+order_id, { status: value })
   }
 }

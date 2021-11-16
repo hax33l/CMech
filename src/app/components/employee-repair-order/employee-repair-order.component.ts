@@ -5,6 +5,7 @@ import { EmployeeService } from 'src/app/services/employee-service/employee.serv
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NewRepairDialogComponent } from '../new-repair-dialog/new-repair-dialog.component';
 import { Router } from '@angular/router';
+import { RepairStatusDialogComponent } from '../repair-status-dialog/repair-status-dialog.component';
 
 export interface RepairOrder {
   id: number;
@@ -59,7 +60,7 @@ export class EmployeeRepairOrderComponent implements OnInit {
   openNewRepairDialog(){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.maxHeight = '80vh';
-    dialogConfig.maxWidth = '90vh';
+    dialogConfig.minWidth = '40vw';
     const dialogRef = this.dialog.open(NewRepairDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
@@ -69,7 +70,16 @@ export class EmployeeRepairOrderComponent implements OnInit {
             this.router.navigate([currentUrl]);
         });
       }
-
     });
+  }
+
+  openRepairStatusDialog(row: any){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = row;
+    dialogConfig.maxHeight = '80vh';
+    dialogConfig.maxWidth = '90vw';
+    dialogConfig.minWidth = '50vw';
+    dialogConfig.disableClose = true;
+    this.dialog.open(RepairStatusDialogComponent, dialogConfig);
   }
 }

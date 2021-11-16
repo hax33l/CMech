@@ -63,7 +63,7 @@
                                     </ng-container>
 
                                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"  (click)="openRepairStatusDialog(row)" ></tr>
                                 </table>
                             </div>
                             <mat-paginator #newPag [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
@@ -109,7 +109,7 @@
                                     </ng-container>
 
                                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openRepairStatusDialog(row)"></tr>
                                 </table>
                             </div>
                             <mat-paginator #inProgressPag [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
@@ -155,7 +155,7 @@
                                     </ng-container>
 
                                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openRepairStatusDialog(row)"></tr>
                                 </table>
                             </div>
                             <mat-paginator #rdyPag [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons

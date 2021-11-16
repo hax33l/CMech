@@ -45,6 +45,8 @@ import { EmployeeRepairOrderComponent } from './components/employee-repair-order
 import { EmployeePartStorageComponent } from './components/employee-part-storage/employee-part-storage.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { NewRepairDialogComponent } from './components/new-repair-dialog/new-repair-dialog.component';
+import { RepairStatusDialogComponent } from './components/repair-status-dialog/repair-status-dialog.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,7 @@ import { NewRepairDialogComponent } from './components/new-repair-dialog/new-rep
     EmployeeRepairOrderComponent,
     EmployeePartStorageComponent,
     NewRepairDialogComponent,
+    RepairStatusDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -94,7 +97,8 @@ import { NewRepairDialogComponent } from './components/new-repair-dialog/new-rep
     ClipboardModule,
     MatTooltipModule,
     MatSelectModule,
-    MatTabsModule
+    MatTabsModule,
+    MatRadioModule
   ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]

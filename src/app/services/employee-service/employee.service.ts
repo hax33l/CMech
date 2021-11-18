@@ -49,4 +49,16 @@ export class EmployeeService {
   {
     return this.http.put<any>(this.apiUrl + 'employee/add_repair/'+order_id, { status: value })
   }
+  getRepairStatistics()
+  {
+    return this.http.post<any>(this.apiUrl + 'employee/workshop_info', {workshop_id: localStorage.getItem('workshop_id')});
+  }
+  getParts()
+  {
+    return this.http.post<any>(this.apiUrl + 'employee/parts', {workshop_id: localStorage.getItem('workshop_id')});
+  }
+  addPart(part: any)
+  {
+    return this.http.post<any>(this.apiUrl + 'employee/add_part', part);
+  }
 }

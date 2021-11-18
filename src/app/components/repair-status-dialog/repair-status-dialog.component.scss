@@ -6,6 +6,7 @@
 }
 mat-radio-button {
     margin-left: 16px;
+    margin-bottom: 10px;
 }
 
 table {
@@ -50,4 +51,7 @@ table {
 }
 .mat-row:nth-child(odd){
     background-color: rgb(78, 78, 78);
+}
+.action-button {
+    width: 16%;
 }

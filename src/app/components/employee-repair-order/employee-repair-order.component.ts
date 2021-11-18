@@ -6,6 +6,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NewRepairDialogComponent } from '../new-repair-dialog/new-repair-dialog.component';
 import { Router } from '@angular/router';
 import { RepairStatusDialogComponent } from '../repair-status-dialog/repair-status-dialog.component';
+import { MatSort } from '@angular/material/sort';
 
 export interface RepairOrder {
   id: number;
@@ -26,15 +27,20 @@ export interface RepairOrder {
   styleUrls: ['./employee-repair-order.component.scss']
 })
 export class EmployeeRepairOrderComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'created_at', 'title', 'description', 'category'];
+  displayedColumns: string[] = ['id', 'created_at','plate', 'title', 'description', 'category'];
 
   in_progress = new MatTableDataSource<RepairOrder>([]);
   new = new MatTableDataSource<RepairOrder>([]);
   ready = new MatTableDataSource<RepairOrder>([]);
   
+  new_count = 0
+  progress_count = 0
+  ready_count = 0
+
   @ViewChild('newPag') new_paginator!: MatPaginator;
   @ViewChild('inProgressPag') in_pro_paginator!: MatPaginator;
   @ViewChild('rdyPag') rdy_paginator!: MatPaginator;
+  @ViewChild(MatSort) new_sort!: MatSort;
 
   constructor(
     private employeeService: EmployeeService,
@@ -48,13 +54,23 @@ export class EmployeeRepairOrderComponent implements OnInit {
       this.new.data = data.new;
       this.in_progress.data = data.in_progress;
       this.ready.data = data.ready;
-      
       this.new.paginator = this.new_paginator;
       this.in_progress.paginator = this.in_pro_paginator;
       this.ready.paginator = this.rdy_paginator;
     });
-    
+    this.employeeService.getRepairStatistics().subscribe((data) => {
+      this.new_count = data.new
+      this.progress_count = data.in_progress
+      this.ready_count = data.ready
+    })
 
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.new.filter = filterValue.trim().toLowerCase();
+    this.in_progress.filter = filterValue.trim().toLowerCase();
+    this.ready.filter = filterValue.trim().toLowerCase();
   }
 
   openNewRepairDialog(){
@@ -80,6 +96,11 @@ export class EmployeeRepairOrderComponent implements OnInit {
     dialogConfig.maxWidth = '90vw';
     dialogConfig.minWidth = '50vw';
     dialogConfig.disableClose = true;
-    this.dialog.open(RepairStatusDialogComponent, dialogConfig);
+    const dialogRef = this.dialog.open(RepairStatusDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.data)
+        window.location.reload();
+    });
   }
 }

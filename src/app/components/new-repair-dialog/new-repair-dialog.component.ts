@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { EmployeeService } from 'src/app/services/employee-service/employee.service';
+import { MatSnackBar, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-new-repair-dialog',
@@ -18,17 +19,22 @@ export class NewRepairDialogComponent implements OnInit {
     status: ['']
   });
 
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+
   constructor(
     private fb: FormBuilder,
     private employeeService: EmployeeService,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit(){
+  onSubmit() {
     this.repairForm.value.workshop_id = localStorage.getItem('workshop_id');
     this.repairForm.value.status = 'New';
-    this.employeeService.addRepairOrder(this.repairForm.value).subscribe();
+    this.employeeService.addRepairOrder(this.repairForm.value).subscribe(data => {
+      this._snackBar.open('Repair order key: ' + data.repairOrder.key, 'Close', { verticalPosition: this.verticalPosition });
+    });
   }
 }

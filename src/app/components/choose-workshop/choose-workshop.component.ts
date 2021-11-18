@@ -27,7 +27,7 @@ export class ChooseWorkshopComponent implements OnInit {
     this.employeeService.getEmployeeWorkshops().subscribe(data => {
       if( data.length == 1){
         localStorage.setItem('workshop_id', data[0].id);
-        this.router.navigate(['e-user/']);
+        this.router.navigate(['e-user/rep-orders']);
       }else if( data.length == 0){
         console.log('no workshops yet')
       }else{

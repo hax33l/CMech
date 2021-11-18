@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild  } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { EmployeeService } from 'src/app/services/employee-service/employee.service';
@@ -7,6 +7,7 @@ import { NewRepairDialogComponent } from '../new-repair-dialog/new-repair-dialog
 import { Router } from '@angular/router';
 import { RepairStatusDialogComponent } from '../repair-status-dialog/repair-status-dialog.component';
 import { MatSort } from '@angular/material/sort';
+import { NumberLiteralType } from 'typescript';
 
 export interface RepairOrder {
   id: number;
@@ -27,12 +28,15 @@ export interface RepairOrder {
   styleUrls: ['./employee-repair-order.component.scss']
 })
 export class EmployeeRepairOrderComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'created_at','plate', 'title', 'description', 'category'];
+  displayedColumns: string[] = ['id', 'created_at', 'plate', 'title', 'description', 'category'];
+  messageColor: string = 'white';
+  messages: any;
+  messagesLength: number = 0;
 
   in_progress = new MatTableDataSource<RepairOrder>([]);
   new = new MatTableDataSource<RepairOrder>([]);
   ready = new MatTableDataSource<RepairOrder>([]);
-  
+
   new_count = 0
   progress_count = 0
   ready_count = 0
@@ -46,10 +50,14 @@ export class EmployeeRepairOrderComponent implements OnInit {
     private employeeService: EmployeeService,
     private dialog: MatDialog,
     private router: Router
-  ) {   }
-  
+  ) { }
+
 
   ngOnInit(): void {
+    this.employeeService.getNews().subscribe((data) => {
+      this.messages = data.messages;
+      this.messagesLength = data.messages.length;
+    });
     this.employeeService.getWorkshopRepairs().subscribe((data) => {
       this.new.data = data.new;
       this.in_progress.data = data.in_progress;
@@ -73,23 +81,23 @@ export class EmployeeRepairOrderComponent implements OnInit {
     this.ready.filter = filterValue.trim().toLowerCase();
   }
 
-  openNewRepairDialog(){
+  openNewRepairDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.maxHeight = '80vh';
     dialogConfig.minWidth = '40vw';
     const dialogRef = this.dialog.open(NewRepairDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-      if( result == true){
+      if (result == true) {
         let currentUrl = this.router.url;
-        this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-            this.router.navigate([currentUrl]);
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate([currentUrl]);
         });
       }
     });
   }
 
-  openRepairStatusDialog(row: any){
+  openRepairStatusDialog(row: any) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = row;
     dialogConfig.maxHeight = '80vh';
@@ -99,7 +107,7 @@ export class EmployeeRepairOrderComponent implements OnInit {
     const dialogRef = this.dialog.open(RepairStatusDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result.data)
+      if (result.data)
         window.location.reload();
     });
   }

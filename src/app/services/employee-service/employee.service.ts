@@ -61,4 +61,8 @@ export class EmployeeService {
   {
     return this.http.post<any>(this.apiUrl + 'employee/add_part', part);
   }
+  getNews()
+  {
+    return this.http.post<any>(this.apiUrl + 'employee/workshop_messages', {workshop_id: localStorage.getItem('workshop_id')});
+  }
 }

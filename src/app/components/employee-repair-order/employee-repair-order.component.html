@@ -45,12 +45,13 @@
                     <div *ngIf="messagesLength != 0; else elseBlock">
                         <span *ngFor="let message of messages">
                             <p>{{message.created_at | date:'medium'}}</p>
-                            <p><span style="color: {{ message.color }}">" {{message.content}} " </span> ~ {{message.author}}
+                            <p><span style="color: {{ message.color }}">" {{message.content}} " </span> ~
+                                {{message.author}}
                             </p>
                         </span>
                     </div>
                     <ng-template #elseBlock>There are currently no messages.</ng-template>
-                    
+
                 </mat-card-content>
             </mat-card>
             <mat-card class="my-4">

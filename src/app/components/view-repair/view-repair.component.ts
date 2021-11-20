@@ -11,15 +11,17 @@ import { CarService } from 'src/app/services/car-service/car.service';
   styleUrls: ['./view-repair.component.scss']
 })
 export class ViewRepairComponent implements OnInit {
-  displayedColumns: string[] = ['created_at','title','description','cost'];
+  displayedColumns: string[] = ['created_at', 'title', 'description', 'cost'];
   reg_number: string = '';
   key: string = '';
-  repair: any;  
+  repair: any;
   dataSource!: MatTableDataSource<any>;
   status: string = '';
   link: string = '';
   positionOptions: TooltipPosition[] = ['below', 'above', 'left', 'right'];
   position = new FormControl(this.positionOptions[3]);
+  showStatuses: boolean = false;
+  hideArrows: boolean = false;
 
   constructor(
     private router: Router,
@@ -28,18 +30,24 @@ export class ViewRepairComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(param => {      
+    if (window.screen.width < 768) {
+      this.hideArrows = true;
+    }
+    this.route.params.subscribe(param => {
       this.reg_number = param.reg_number;
       this.key = param.key;
     });
 
     this.link = this.router.url
-    this.loadRepairData(this.reg_number,this.key);
+    this.loadRepairData(this.reg_number, this.key);
 
   }
 
-  loadRepairData(reg_number: string, key: string){
-    this.carService.getRepairInfo(reg_number,key).subscribe((data) => {
+  loadRepairData(reg_number: string, key: string) {
+    this.carService.getRepairInfo(reg_number, key).subscribe((data) => {
+      if (data.statuses.length != 0) {
+        this.showStatuses = true;
+      }
       this.repair = data.repair_order;
       this.status = data.repair_order.status;
       this.dataSource = new MatTableDataSource<any>(data.statuses);

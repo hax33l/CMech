@@ -63,6 +63,7 @@ export class CarDashboardComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.maxHeight = '70vh';
     dialogConfig.maxWidth = '90vw';
+    dialogConfig.minWidth = '40vw';
     dialogConfig.data = row;
     this.dialog.open(RepairDialogComponent, dialogConfig);
   }

@@ -27,11 +27,14 @@ export class AuthenticationService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    ) { }
+  ) { }
 
-  login(loginForm: LoginForm) {  
-    return this.http.post<any>('http://127.0.0.1:8000/api/login', {email: loginForm.email, password: loginForm.password}).pipe(
-      map(({ token , user}) => {
+  login(loginForm: LoginForm) {
+    return this.http.post<any>('http://127.0.0.1:8000/api/login', { email: loginForm.email, password: loginForm.password }).pipe(
+      map(({ token, user, error_message }) => {
+        if (error_message) {
+          return error_message;
+        }
         localStorage.setItem('user-token', token);
         localStorage.setItem('nickname', user.nickname);
         return user.role;
@@ -40,7 +43,7 @@ export class AuthenticationService {
   }
 
   logout() {
-    if( localStorage.getItem('workshop_id') )
+    if (localStorage.getItem('workshop_id'))
       localStorage.removeItem('workshop_id');
     localStorage.removeItem('user-token');
     localStorage.removeItem('nickname');

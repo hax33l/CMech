@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication-service/authentication.service';
 import { map } from 'rxjs/operators';
+import { MatSnackBar, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -15,8 +16,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthenticationService,
-    private router: Router
-  ) {   }
+    private router: Router,
+    private _snackBar: MatSnackBar
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -29,23 +31,28 @@ export class LoginComponent implements OnInit {
         Validators.required,
         Validators.minLength(6)
       ])
-      
+
     })
   }
 
   onSubmit() {
-    if(this.loginForm.invalid) {
+    if (this.loginForm.invalid) {
       return;
     }
     this.authService.login(this.loginForm.value)
-    .pipe(
-      map(role => {
-        if ( role == 'user'){
-          this.router.navigate(['d-user'])
-        } else if ( role == 'employee'){
-          this.router.navigate(['workshop'])
-        }
-      })
-    ).subscribe();
+      .pipe(
+        map(role => {
+          if (role == 'user') {
+            this.router.navigate(['d-user'])
+          } else if (role == 'employee') {
+            this.router.navigate(['workshop'])
+          } else if (role == 'error') {
+            this._snackBar.open('Incorrect email / password.', '', {
+              duration: 3000,
+            }
+            );
+          }
+        })
+      ).subscribe();
   }
 }

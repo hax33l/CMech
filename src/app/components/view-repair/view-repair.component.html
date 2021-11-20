@@ -1,33 +1,39 @@
 <app-navbar></app-navbar>
 <div class="container">
     <div class="row justify-content-center text-center my-4 py-4 new-block">
-        <div class="col-3 col-sm-3 col-md-3 col-lg-2" [ngClass]="(status == 'New' || status == 'In progress' || status == 'Ready') ? 'colored' : 'greyedOut'">
-            <img style="height:auto;" class="img-fluid" [ngClass]="{'jump-animation': status == 'New'}" src="../assets/test.png" alt="">
+        <div class="col-3 col-sm-3 col-md-3 col-lg-2"
+            [ngClass]="(status == 'New' || status == 'In progress' || status == 'Ready') ? 'colored' : 'greyedOut'">
+            <img style="height:auto;" class="img-fluid" [ngClass]="{'jump-animation': status == 'New'}"
+                src="../assets/test.png" alt="">
             <h2 *ngIf="(status == 'New' || status == 'In progress' || status == 'Ready')" class="my-2">New</h2>
         </div>
-        <div class="col-1 col-sm-1 col-md-1 col-lg-1 arrow1-block " >
+        <div *ngIf="!hideArrows" class="col-1 col-sm-1 col-md-1 col-lg-1 arrow1-block ">
             <div *ngIf="(status == 'In progress' || status == 'Ready') ;else arrow1">
                 <img style="height:50px;" class="img-fluid" src="../assets/right-arrow2.png" alt="arrow">
-            </div>    
+            </div>
             <ng-template #arrow1>
                 <img style="height:50px;" class="img-fluid" src="../assets/right-arrow.png" alt="arrow">
             </ng-template>
         </div>
-        <div class="col-3 col-sm-3 col-md-3 col-lg-2  in-progress-block" [ngClass]="(status == 'In progress' || status == 'Ready') ? 'colored' : 'greyedOut'">
-            <img style="height:auto;" class="img-fluid" [ngClass]="{'jump-animation': status == 'In progress'}" src="../assets/mechanic.png" alt="">
+        <div class="col-3 col-sm-3 col-md-3 col-lg-2  in-progress-block"
+            [ngClass]="(status == 'In progress' || status == 'Ready') ? 'colored' : 'greyedOut'">
+            <img style="height:auto;" class="img-fluid" [ngClass]="{'jump-animation': status == 'In progress'}"
+                src="../assets/mechanic.png" alt="">
             <h2 *ngIf="(status == 'In progress' || status == 'Ready')" class="my-2">In progress</h2>
         </div>
-        <div class="col-1 col-sm-1 col-md-1 col-lg-1 arrow2-block">
+        <div *ngIf="!hideArrows" class="col-1 col-sm-1 col-md-1 col-lg-1 arrow2-block">
             <div *ngIf="status === 'Ready';else arrow2">
                 <img style="height:50px;" class="img-fluid" src="../assets/right-arrow2.png" alt="arrow">
-            </div>    
+            </div>
             <ng-template #arrow2>
                 <img style="height:50px;" class="img-fluid" src="../assets/right-arrow.png" alt="arrow">
             </ng-template>
         </div>
-        
-        <div class="col-3 col-sm-3 col-md-3 col-lg-2 ready-block" [ngClass]="status === 'Ready' ? 'colored' : 'greyedOut'">
-            <img style="height:auto;" class="img-fluid" [ngClass]="{'jump-animation': status == 'Ready'}" src="../assets/garage.png" alt="">
+
+        <div class="col-3 col-sm-3 col-md-3 col-lg-2 ready-block"
+            [ngClass]="status === 'Ready' ? 'colored' : 'greyedOut'">
+            <img style="height:auto;" class="img-fluid" [ngClass]="{'jump-animation': status == 'Ready'}"
+                src="../assets/garage.png" alt="">
             <h2 *ngIf="status === 'Ready'" class="my-2">Repair ready</h2>
         </div>
     </div>
@@ -35,42 +41,44 @@
         <div class="col-xl-7 col-md-9 mb-4">
             <mat-card class="m-1">
                 <mat-card-title class="m-1">
-                  <h3>Status updates</h3>
+                    <h3>Status updates</h3>
                 </mat-card-title>
                 <mat-card-content class="">
-                  <div class="table-responsive">
-                    <table mat-table *ngIf="dataSource; else noRepairsBlock" [dataSource]="dataSource" class="mat-elevation-z8">
-                      
-        
-                      <ng-container matColumnDef="created_at">
-                        <th mat-header-cell *matHeaderCellDef> Created at </th>
-                        <td mat-cell *matCellDef="let element"> {{element.created_at | date}} </td>
-                      </ng-container>
-                      
-                      <ng-container matColumnDef="title">
-                        <th mat-header-cell *matHeaderCellDef> Title </th>
-                        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
-                      </ng-container>
-        
-                      <ng-container matColumnDef="description">
-                        <th mat-header-cell *matHeaderCellDef> Description </th>
-                        <td class="wrap" mat-cell *matCellDef="let element"> {{element.description}} </td>
-                      </ng-container>
-        
-                      <ng-container matColumnDef="cost">
-                        <th mat-header-cell *matHeaderCellDef> Cost </th>
-                        <td mat-cell *matCellDef="let element">
-                            <div *ngIf="element.cost; else elseBlock">{{ element.cost }} $</div>
-                            <ng-template #elseBlock>0 $</ng-template></td>
-                      </ng-container>
-        
-                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                    </table>
-                  </div>
-                  <ng-template #noRepairsBlock>
-                    <p class="m-1">There aren't any status updates available for this car.</p>
-                  </ng-template>
+                    <div class="table-responsive">
+                        <table mat-table *ngIf="showStatuses; else noRepairsBlock" [dataSource]="dataSource"
+                            class="mat-elevation-z8">
+
+
+                            <ng-container matColumnDef="created_at">
+                                <th mat-header-cell *matHeaderCellDef> Created at </th>
+                                <td mat-cell *matCellDef="let element"> {{element.created_at | date}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="title">
+                                <th mat-header-cell *matHeaderCellDef> Title </th>
+                                <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="description">
+                                <th mat-header-cell *matHeaderCellDef> Description </th>
+                                <td class="wrap" mat-cell *matCellDef="let element"> {{element.description}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="cost">
+                                <th mat-header-cell *matHeaderCellDef> Cost </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <div *ngIf="element.cost; else elseBlock">{{ element.cost }} $</div>
+                                    <ng-template #elseBlock>0 $</ng-template>
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                    </div>
+                    <ng-template #noRepairsBlock>
+                        <p class="m-1">There aren't any status updates available for this car yet.</p>
+                    </ng-template>
                 </mat-card-content>
             </mat-card>
         </div>
@@ -79,20 +87,20 @@
                 <mat-card-title>
                     <h3>Order details</h3>
                 </mat-card-title>
-                <mat-card-content *ngIf="repair; else noDetailsBlock">                    
+                <mat-card-content *ngIf="repair; else noDetailsBlock">
                     <div class="row">
                         <div class="col-4">
                             <p>Status:</p>
                         </div>
-                        <div class="col-8 text-end">
+                        <div class="col-8 text-end break-word">
                             <p>{{ repair.status }}</p>
                         </div>
-                    </div>                  
+                    </div>
                     <div class="row">
                         <div class="col-4">
                             <p>Category:</p>
                         </div>
-                        <div class="col-8 text-end">
+                        <div class="col-8 text-end break-word">
                             <p>{{ repair.category}}</p>
                         </div>
                     </div>
@@ -100,15 +108,15 @@
                         <div class="col-4">
                             <p>Title:</p>
                         </div>
-                        <div class="col-8 text-end">
+                        <div class="col-8 text-end break-word">
                             <p>{{ repair.title }}</p>
                         </div>
-                    </div>  
+                    </div>
                     <div class="row">
                         <div class="col-4">
                             <p>Description:</p>
                         </div>
-                        <div class="col-8 text-end">
+                        <div class="col-8 text-end break-word">
                             <p>{{ repair.description }}</p>
                         </div>
                     </div>
@@ -116,7 +124,7 @@
                         <div class="col-4">
                             <p>Created:</p>
                         </div>
-                        <div class="col-8 text-end">
+                        <div class="col-8 text-end break-word">
                             <p>{{ repair.created_at | date:'medium'}}</p>
                         </div>
                     </div>
@@ -126,13 +134,12 @@
                 </ng-template>
             </mat-card>
             <div class="m-1">
-                <mat-form-field #tooltip="matTooltip"
-                matTooltip="Click to copy"
-                [matTooltipPosition]="position.value"
-                matTooltipHideDelay="1000" [cdkCopyToClipboard]="link" class="input-full-width my-4" appearance="fill">
+                <mat-form-field #tooltip="matTooltip" matTooltip="Click to copy" [matTooltipPosition]="position.value"
+                    matTooltipHideDelay="1000" [cdkCopyToClipboard]="link" class="input-full-width my-4"
+                    appearance="fill">
                     <mat-label>Copy tracking link</mat-label>
-                    <input  matInput disabled value="{{ link }}">
-                    <mat-icon class="hand-cursor" [cdkCopyToClipboard]="link" matSuffix>content_copy</mat-icon>                    
+                    <input matInput disabled value="{{ link }}">
+                    <mat-icon class="hand-cursor" [cdkCopyToClipboard]="link" matSuffix>content_copy</mat-icon>
                 </mat-form-field>
             </div>
         </div>

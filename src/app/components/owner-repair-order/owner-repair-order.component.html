@@ -44,14 +44,60 @@
                 <mat-card-content class="message-box m-1">
                     <div *ngIf="messagesLength != 0; else elseBlock">
                         <span *ngFor="let message of messages">
-                            <p>{{message.created_at | date:'medium'}}</p>
-                            <p><span style="color: {{ message.color }}">" {{message.content}} " </span> ~
-                                {{message.author}}
-                            </p>
+                            <div class="row align-items-center">
+                                <div class="col-10">
+                                    <p [ngStyle]="{'color': message.visible ? '#eeeeee' : '#7e7e7e'}">
+                                        {{message.created_at | date:'medium'}}</p>
+                                    <p><span [ngStyle]="{'color': message.visible? message.color : '#7e7e7e'}">"
+                                            {{message.content}} " </span>
+                                        <span [ngStyle]="{'color': message.visible ? '#eeeeee' : '#7e7e7e'}">
+                                            ~{{message.author}}
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="col-2 text-center">
+                                    <span *ngIf="message.visible; else elseMessageVisibilityIcon">
+                                        <button mat-icon-button (click)="changeVisibility(message.id)" aria-label="Icon-button with an eye crossed">
+                                            <mat-icon>visibility_off</mat-icon>
+                                        </button>
+                                    </span>
+                                    <ng-template #elseMessageVisibilityIcon>
+                                        <button mat-icon-button (click)="changeVisibility(message.id)" aria-label="Icon-button with an eye crossed">
+                                            <mat-icon>visibility</mat-icon>
+                                        </button>
+                                    </ng-template>
+                                    <button mat-icon-button color="warn" aria-label="Icon-button with a cross">
+                                        <mat-icon>clear</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
                         </span>
                     </div>
                     <ng-template #elseBlock>There are currently no messages.</ng-template>
-
+                    <div class="row mt-4  align-items-center">
+                        <div class="col-md-2 col-sm-3 col-4 ">
+                            <mat-form-field class="field-full-width field-no-padding" appearance="outline">
+                                <mat-label>Font color</mat-label>
+                                <mat-select>
+                                  <mat-option style="color: #99cc33;" value="one">Success</mat-option>
+                                  <mat-option style="color: #ffcc00;" value="two">Warning</mat-option>
+                                  <mat-option style="color: #df4759;" value="two">Danger</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                        </div>
+                        <div class="col-md-10 col-sm-9 col-8 p-0">
+                            <form class="add-message-form">
+                                <mat-form-field class="field-full-width field-no-padding" appearance="outline">
+                                    <mat-label>Message</mat-label>
+                                    <input matInput #message maxlength="256">
+                                </mat-form-field>
+                            </form>
+                        </div>
+                        
+                        <div class="col-sm-2 col-4 py-1">
+                            <button class="field-full-width" mat-stroked-button color="accent">Add</button>
+                        </div>
+                    </div>
                 </mat-card-content>
             </mat-card>
             <mat-card class="my-4">

@@ -49,6 +49,11 @@ import { RepairStatusDialogComponent } from './components/repair-status-dialog/r
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { OwnerDashboardComponent } from './components/owner-dashboard/owner-dashboard.component';
+import { OwnerUserComponent } from './owner-user/owner-user.component';
+import { OwnerWorkshopComponent } from './components/owner-workshop/owner-workshop.component';
+import { OwnerNewWorkshopComponent } from './components/owner-new-workshop/owner-new-workshop.component';
+import { OwnerRepairOrderComponent } from './components/owner-repair-order/owner-repair-order.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +76,11 @@ import { MatExpansionModule } from '@angular/material/expansion';
     EmployeePartStorageComponent,
     NewRepairDialogComponent,
     RepairStatusDialogComponent,
+    OwnerDashboardComponent,
+    OwnerUserComponent,
+    OwnerWorkshopComponent,
+    OwnerNewWorkshopComponent,
+    OwnerRepairOrderComponent
   ],
   imports: [
     BrowserModule,

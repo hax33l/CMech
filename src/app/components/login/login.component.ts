@@ -45,7 +45,9 @@ export class LoginComponent implements OnInit {
           if (role == 'user') {
             this.router.navigate(['d-user'])
           } else if (role == 'employee') {
-            this.router.navigate(['workshop'])
+            this.router.navigate(['e-workshop'])
+          } else if (role == 'owner') {
+            this.router.navigate(['o-workshop'])
           } else if (role == 'error') {
             this._snackBar.open('Incorrect email / password.', '', {
               duration: 3000,

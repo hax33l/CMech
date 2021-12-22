@@ -1,31 +1,28 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item href="d-user">Home</a>
       <h2 mat-subheader>My cars:</h2>
-      <a mat-list-item *ngFor="let car of cars" [routerLink]="['car/'+ car.registration_number]" ><span mat-line>{{car.manufacturer}} {{car.model}}</span><span mat-line>{{car.registration_number}}</span></a>
+      <a mat-list-item *ngFor="let car of cars" [routerLink]="['car/'+ car.registration_number]"><span
+          mat-line>{{car.manufacturer}} {{car.model}}</span><span mat-line>{{car.registration_number}}</span></a>
       <h2 mat-subheader>Settings:</h2>
-      <a mat-list-item [routerLink]="['new-car']" >New car</a>
-    </mat-nav-list> 
+      <a mat-list-item [routerLink]="['new-car']">New car</a>
+    </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>CMech</span>
       <span class="toolbar-spacer"></span>
       <span>{{ nickname }}</span>
-      <a mat-button (click)="onLogout()" href=""><mat-icon>exit_to_app</mat-icon> Logout</a>
+      <a mat-button (click)="onLogout()" href="">
+        <mat-icon>exit_to_app</mat-icon> Logout
+      </a>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

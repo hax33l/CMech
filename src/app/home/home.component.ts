@@ -17,10 +17,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
+
   title = 'CMech';
 
-  onSearch(){
-    this.router.navigate(['tracking/'+this.registration_number.replace(/\s/g, "")+'/'+this.key])
+  onSearch() {
+    if (this.registration_number.length == 0 || this.key.length == 0)
+      return
+    this.router.navigate(['tracking/' + this.registration_number.replace(/\s/g, "") + '/' + this.key])
   }
 }

@@ -19,18 +19,18 @@ export class ChooseWorkshopComponent implements OnInit {
   ngOnInit(): void {
     this.loadWorkshopData();
   }
-  onWorkshopClick(workshop_id: any){
+  onWorkshopClick(workshop_id: any) {
     localStorage.setItem('workshop_id', workshop_id);
     this.router.navigate(['e-user/']);
   }
-  loadWorkshopData(){
+  loadWorkshopData() {
     this.employeeService.getEmployeeWorkshops().subscribe(data => {
-      if( data.length == 1){
+      if (data.length == 1) {
         localStorage.setItem('workshop_id', data[0].id);
         this.router.navigate(['e-user/rep-orders']);
-      }else if( data.length == 0){
+      } else if (data.length == 0) {
         console.log('no workshops yet')
-      }else{
+      } else {
         this.workshops = data;
       }
     });

@@ -9,11 +9,15 @@ import { EmployeePartStorageComponent } from './components/employee-part-storage
 import { EmployeeRepairOrderComponent } from './components/employee-repair-order/employee-repair-order.component';
 import { LoginComponent } from './components/login/login.component';
 import { NewCarComponent } from './components/new-car/new-car.component';
+import { OwnerNewWorkshopComponent } from './components/owner-new-workshop/owner-new-workshop.component';
+import { OwnerRepairOrderComponent } from './components/owner-repair-order/owner-repair-order.component';
+import { OwnerWorkshopComponent } from './components/owner-workshop/owner-workshop.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ViewRepairComponent } from './components/view-repair/view-repair.component';
 import { DefaultUserComponent } from './default-user/default-user.component';
 import { EmployeeUserComponent } from './employee-user/employee-user.component';
 import { HomeComponent } from './home/home.component';
+import { OwnerUserComponent } from './owner-user/owner-user.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,36 +25,49 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'acc-type', component: AccountTypeComponent },
   { path: 'tracking/:reg_number/:key', component: ViewRepairComponent },
-  { path: 'd-user', component: DefaultUserComponent, 
+  {
+    path: 'd-user', component: DefaultUserComponent,
     children: [
-    {
-      path: '', 
-      component: DefaultDashboardComponent, 
-    },
-    {
-      path: 'car/:reg_number', 
-      component: CarDashboardComponent, 
-    },
-    {
-      path: 'new-car',
-      component: NewCarComponent,
-    }
-  ],
+      {
+        path: '',
+        component: DefaultDashboardComponent,
+      },
+      {
+        path: 'car/:reg_number',
+        component: CarDashboardComponent,
+      },
+      {
+        path: 'new-car',
+        component: NewCarComponent,
+      }
+    ],
   },
-  { path: 'workshop', component: ChooseWorkshopComponent },
-  { path: 'e-user', component: EmployeeUserComponent,
+  { path: 'e-workshop', component: ChooseWorkshopComponent },
+  {
+    path: 'e-user', component: EmployeeUserComponent,
     children: [
       {
-        path: '', 
-        component: EmployeeDashboardComponent, 
+        path: 'storage',
+        component: EmployeePartStorageComponent,
       },
       {
-        path: 'storage', 
-        component: EmployeePartStorageComponent, 
+        path: 'rep-orders',
+        component: EmployeeRepairOrderComponent,
+      },
+    ],
+  },
+  { path: 'o-workshop', component: OwnerWorkshopComponent },
+  { path: 'o-new', component: OwnerNewWorkshopComponent },
+  {
+    path: 'o-user', component: OwnerUserComponent,
+    children: [
+      {
+        path: 'storage',
+        component: EmployeePartStorageComponent,
       },
       {
-        path: 'rep-orders', 
-        component: EmployeeRepairOrderComponent, 
+        path: 'rep-orders',
+        component: OwnerRepairOrderComponent,
       },
     ],
   },

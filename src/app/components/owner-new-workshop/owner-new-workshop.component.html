@@ -1,0 +1,47 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <div class="row wrapper justify-content-center align-items-center">
+        <div class="col-xl-4 col-lg-6  col-md-7 col-sm-9 col-11 m-2">
+            <mat-card>
+                <mat-card-title class="text-center m-3">Create a workshop</mat-card-title>
+                <mat-card-content class="mx-2">
+                    <form [formGroup]="workshopForm" (ngSubmit)="onSubmit()">
+                        <div class="text-center">
+                            <mat-form-field>
+                                <input matInput placeholder="Name" formControlName="name">
+                                <mat-hint >Name is required</mat-hint>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput placeholder="City" formControlName="city">
+                                <mat-hint >City is required</mat-hint>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput placeholder="Street" formControlName="street">
+                                <mat-hint >Street is required</mat-hint>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput placeholder="Number" formControlName="number">
+                                <mat-hint >Number is required</mat-hint>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput placeholder="Postal code" formControlName="postal_code">
+                                <mat-hint >Postal code is required</mat-hint>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput placeholder="Voivodeship" formControlName="voivodeship">
+                                <mat-hint >Voivodeship is required</mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div class="text-center m-4">
+                            <button class="submit-btn" [disabled]="!workshopForm.valid" mat-flat-button color="accent" type="submit">Create</button>
+                            <mat-card-subtitle class="mt-4">
+                                Or choose a workshop, <a routerLink="/o-workshop">here</a>.
+                            </mat-card-subtitle>
+                        </div>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

@@ -3,8 +3,6 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/e-user" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
-          true}">Home</a>
       <a mat-list-item routerLink="rep-orders" routerLinkActive="active-link">Repair orders</a>
       <a mat-list-item routerLink="storage" routerLinkActive="active-link">Part storage</a>
       <h2 mat-subheader>Settings:</h2>

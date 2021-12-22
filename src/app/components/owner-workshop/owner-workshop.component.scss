@@ -1,0 +1,24 @@
+.container-fluid {
+    padding: 0;
+}
+
+.row {
+    height: 100%
+}
+
+.wrapper {
+    height: 70vh;
+}
+
+.workshop-card {
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.workshop-card:hover {
+    transform: scale(1.1);
+}
+
+.new-workshop {
+    border: 3px solid #7B1FA2
+}

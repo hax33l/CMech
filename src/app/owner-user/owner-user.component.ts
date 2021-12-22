@@ -1,19 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { Car, CarService } from '../services/car-service/car.service';
 import { AuthenticationService } from '../services/authentication-service/authentication.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { EmployeeService } from '../services/employee-service/employee.service';
 
 @Component({
-  selector: 'app-default-user',
-  templateUrl: './default-user.component.html',
-  styleUrls: ['./default-user.component.scss']
+  selector: 'app-owner-user',
+  templateUrl: './owner-user.component.html',
+  styleUrls: ['./owner-user.component.scss']
 })
-export class DefaultUserComponent {
+export class OwnerUserComponent implements OnInit {
 
-  cars: Car[] = [];
   nickname: any;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -24,20 +23,18 @@ export class DefaultUserComponent {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private carService: CarService,
+    private route: ActivatedRoute,
     private authService: AuthenticationService,
     private router: Router,
-  ) { }
+    private employeeService: EmployeeService,
+    ) {}
 
   ngOnInit(): void {
-    this.carService.getUserCars().subscribe(data => {
-      this.cars = data;
-    }
-    );
+    
     this.nickname = localStorage.getItem("nickname");
   }
-
-  onLogout() {
+  
+  onLogout(){
     this.authService.logout();
   }
 }

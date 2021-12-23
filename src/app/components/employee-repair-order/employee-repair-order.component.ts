@@ -32,6 +32,8 @@ export class EmployeeRepairOrderComponent implements OnInit {
   messageColor: string = 'white';
   messages: any;
   messagesLength: number = 0;
+  
+  workshop_name: string = '';
 
   in_progress = new MatTableDataSource<RepairOrder>([]);
   new = new MatTableDataSource<RepairOrder>([]);
@@ -70,6 +72,7 @@ export class EmployeeRepairOrderComponent implements OnInit {
       this.new_count = data.new
       this.progress_count = data.in_progress
       this.ready_count = data.ready
+      this.workshop_name = data.workshop
     })
 
   }

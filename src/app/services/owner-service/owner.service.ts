@@ -16,13 +16,16 @@ export class OwnerService {
   createWorkshop(workshop: any) {
     return this.http.post<any>(this.apiUrl + 'workshops', workshop);
   }
-  getMessages()
-  {
-    return this.http.post<any>(this.apiUrl + 'owner/workshop_messages', {workshop_id: localStorage.getItem('workshop_id')});
+  getMessages() {
+    return this.http.post<any>(this.apiUrl + 'owner/workshop_messages', { workshop_id: localStorage.getItem('workshop_id') });
   }
-  messageVisibility(id: any)
-  {
-    console.log({message_id: id})
-    return this.http.post<any>(this.apiUrl + 'owner/message_visibility', {message_id: id});
+  messageVisibility(id: any) {
+    return this.http.post<any>(this.apiUrl + 'owner/message_visibility', { message_id: id });
+  }
+  addMessage(message: any) {
+    return this.http.post<any>(this.apiUrl + 'owner/w_messages', message)
+  }
+  destroyMessage(id: any) {
+    return this.http.delete<any>(this.apiUrl + 'owner/w_messages/' + id);
   }
 }

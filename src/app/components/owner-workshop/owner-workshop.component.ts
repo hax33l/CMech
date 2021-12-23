@@ -25,13 +25,13 @@ export class OwnerWorkshopComponent implements OnInit {
 
   onWorkshopClick(workshop_id: any) {
     localStorage.setItem('workshop_id', workshop_id);
-    this.router.navigate(['o-user/']);
+    this.router.navigate(['o-user/rep-orders']);
   }
   loadWorkshopData() {
     this.ownerService.getOwnerWorkshops().subscribe(data => {
       if (data.length == 1) {
         localStorage.setItem('workshop_id', data[0].id);
-        this.router.navigate(['o-user/']);
+        this.router.navigate(['o-user/rep-orders']);
       } else if (data.length == 0) {
         console.log('no workshops yet')
       } else {

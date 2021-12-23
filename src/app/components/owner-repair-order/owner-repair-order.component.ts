@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { RepairStatusDialogComponent } from '../repair-status-dialog/repair-status-dialog.component';
 import { MatSort } from '@angular/material/sort';
 import { OwnerService } from 'src/app/services/owner-service/owner.service';
+import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 
 export interface RepairOrder {
   id: number;
@@ -32,6 +33,7 @@ export class OwnerRepairOrderComponent implements OnInit {
   messageColor: string = 'white';
   messages: any;
   messagesLength: number = 0;
+  workshop_name: string = "";
 
   in_progress = new MatTableDataSource<RepairOrder>([]);
   new = new MatTableDataSource<RepairOrder>([]);
@@ -40,6 +42,8 @@ export class OwnerRepairOrderComponent implements OnInit {
   new_count = 0
   progress_count = 0
   ready_count = 0
+
+  addMessageForm!: FormGroup;
 
   @ViewChild('newPag') new_paginator!: MatPaginator;
   @ViewChild('inProgressPag') in_pro_paginator!: MatPaginator;
@@ -50,7 +54,8 @@ export class OwnerRepairOrderComponent implements OnInit {
     private employeeService: EmployeeService,
     private ownerService: OwnerService,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private formBuilder: FormBuilder,
   ) { }
 
 
@@ -71,8 +76,15 @@ export class OwnerRepairOrderComponent implements OnInit {
       this.new_count = data.new
       this.progress_count = data.in_progress
       this.ready_count = data.ready
+      this.workshop_name = data.workshop
     })
-
+    this.addMessageForm = this.formBuilder.group({
+      content: [null, [Validators.required]],
+      color: [null, [Validators.required]],
+      author: [localStorage.getItem('nickname'), [Validators.required]],
+      visible: [1, [Validators.required]],
+      workshop_id: [localStorage.getItem('workshop_id'), [Validators.required]],
+    })
   }
 
   applyFilter(event: Event) {
@@ -119,5 +131,28 @@ export class OwnerRepairOrderComponent implements OnInit {
       this.messages = data.messages;
       this.messagesLength = data.messages.length;
     });
+  }
+
+  addMessage(formDirective: FormGroupDirective) {
+    if (this.addMessageForm.invalid) {
+      return;
+    }
+    this.ownerService.addMessage(this.addMessageForm.value).subscribe(message => {
+      this.addMessageForm.reset(); // data reset
+      formDirective.resetForm(); // validators reset
+      this.ownerService.getMessages().subscribe((data) => {
+        this.messages = data.messages;
+        this.messagesLength = data.messages.length;
+      });
+    })
+  }
+  destroyMessage(message_id: any) {
+    this.ownerService.destroyMessage(message_id).subscribe(message => {
+      this.ownerService.getMessages().subscribe((data) => {
+        this.messages = data.messages;
+        this.messagesLength = data.messages.length;
+      });
+    })
+
   }
 }

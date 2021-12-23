@@ -2,7 +2,8 @@
     <div class="row justify-content-center">
         <div class="col-xl-2 col-lg-3">
             <div class="row my-4">
-                <div class="col-lg-12 col-sm-6 mb-4">
+                <div class="col-lg-12 col-sm-12 mb-4">
+                    <h1 class="text-center">{{ workshop_name }}</h1>
                     <mat-card>
                         <mat-card-title class="m-1">
                             <h2>Repair orders info:</h2>
@@ -57,16 +58,18 @@
                                 </div>
                                 <div class="col-2 text-center">
                                     <span *ngIf="message.visible; else elseMessageVisibilityIcon">
-                                        <button mat-icon-button (click)="changeVisibility(message.id)" aria-label="Icon-button with an eye crossed">
+                                        <button mat-icon-button (click)="changeVisibility(message.id)"
+                                            aria-label="Icon-button with an eye crossed">
                                             <mat-icon>visibility_off</mat-icon>
                                         </button>
                                     </span>
                                     <ng-template #elseMessageVisibilityIcon>
-                                        <button mat-icon-button (click)="changeVisibility(message.id)" aria-label="Icon-button with an eye crossed">
+                                        <button mat-icon-button (click)="changeVisibility(message.id)"
+                                            aria-label="Icon-button with an eye crossed">
                                             <mat-icon>visibility</mat-icon>
                                         </button>
                                     </ng-template>
-                                    <button mat-icon-button color="warn" aria-label="Icon-button with a cross">
+                                    <button (click)="destroyMessage(message.id)" mat-icon-button color="warn" aria-label="Icon-button with a cross">
                                         <mat-icon>clear</mat-icon>
                                     </button>
                                 </div>
@@ -74,30 +77,30 @@
                         </span>
                     </div>
                     <ng-template #elseBlock>There are currently no messages.</ng-template>
-                    <div class="row mt-4  align-items-center">
-                        <div class="col-md-2 col-sm-3 col-4 ">
-                            <mat-form-field class="field-full-width field-no-padding" appearance="outline">
-                                <mat-label>Font color</mat-label>
-                                <mat-select>
-                                  <mat-option style="color: #99cc33;" value="one">Success</mat-option>
-                                  <mat-option style="color: #ffcc00;" value="two">Warning</mat-option>
-                                  <mat-option style="color: #df4759;" value="two">Danger</mat-option>
-                                </mat-select>
-                              </mat-form-field>
-                        </div>
-                        <div class="col-md-10 col-sm-9 col-8 p-0">
-                            <form class="add-message-form">
+                    <form class="add-message-form" [formGroup]="addMessageForm" (ngSubmit)="addMessage(formDirective)" #formDirective="ngForm">
+                        <div class="row mt-4  align-items-center">
+                            <div class="col-md-2 col-sm-3 col-4 ">
+                                <mat-form-field class="field-full-width field-no-padding" appearance="outline">
+                                    <mat-label>Style</mat-label>
+                                    <mat-select formControlName="color">
+                                        <mat-option style="color: #fff;" value="#fff">Default</mat-option>
+                                        <mat-option style="color: #99cc33;" value="#99cc33">Success</mat-option>
+                                        <mat-option style="color: #ffcc00;" value="#ffcc00">Warning</mat-option>
+                                        <mat-option style="color: #df4759;" value="#df4759">Danger</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-10 col-sm-9 col-8 p-0">
                                 <mat-form-field class="field-full-width field-no-padding" appearance="outline">
                                     <mat-label>Message</mat-label>
-                                    <input matInput #message maxlength="256">
+                                    <input matInput #message maxlength="256" formControlName="content">
                                 </mat-form-field>
-                            </form>
+                            </div>
+                            <div class="col-sm-2 col-4 py-1">
+                                <button class="field-full-width" mat-stroked-button color="accent">Add</button>
+                            </div>
                         </div>
-                        
-                        <div class="col-sm-2 col-4 py-1">
-                            <button class="field-full-width" mat-stroked-button color="accent">Add</button>
-                        </div>
-                    </div>
+                    </form>
                 </mat-card-content>
             </mat-card>
             <mat-card class="my-4">

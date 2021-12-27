@@ -54,6 +54,7 @@ import { OwnerUserComponent } from './owner-user/owner-user.component';
 import { OwnerWorkshopComponent } from './components/owner-workshop/owner-workshop.component';
 import { OwnerNewWorkshopComponent } from './components/owner-new-workshop/owner-new-workshop.component';
 import { OwnerRepairOrderComponent } from './components/owner-repair-order/owner-repair-order.component';
+import { OwnerSettingsComponent } from './components/owner-settings/owner-settings.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { OwnerRepairOrderComponent } from './components/owner-repair-order/owner
     OwnerUserComponent,
     OwnerWorkshopComponent,
     OwnerNewWorkshopComponent,
-    OwnerRepairOrderComponent
+    OwnerRepairOrderComponent,
+    OwnerSettingsComponent
   ],
   imports: [
     BrowserModule,

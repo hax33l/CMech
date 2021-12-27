@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { NewCarComponent } from './components/new-car/new-car.component';
 import { OwnerNewWorkshopComponent } from './components/owner-new-workshop/owner-new-workshop.component';
 import { OwnerRepairOrderComponent } from './components/owner-repair-order/owner-repair-order.component';
+import { OwnerSettingsComponent } from './components/owner-settings/owner-settings.component';
 import { OwnerWorkshopComponent } from './components/owner-workshop/owner-workshop.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ViewRepairComponent } from './components/view-repair/view-repair.component';
@@ -68,6 +69,10 @@ const routes: Routes = [
       {
         path: 'rep-orders',
         component: OwnerRepairOrderComponent,
+      },
+      {
+        path: 'settings',
+        component: OwnerSettingsComponent,
       },
     ],
   },

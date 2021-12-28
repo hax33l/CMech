@@ -39,5 +39,10 @@ export class CarService {
   getRepairInfo(reg_number: string, key: string){
     return this.http.get<any>(this.apiUrl + 'repair_info/' + reg_number + '/' + key);
   }
-  
+  getUserHomeData(){
+    return this.http.get<any>(this.apiUrl + 'user_home');
+  }
+  addWorkshopReview(review: any){
+    return this.http.post<any>(this.apiUrl + 'add_review', review)
+  }
 }

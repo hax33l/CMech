@@ -13,7 +13,6 @@ import { MatTableModule } from '@angular/material/table';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
@@ -55,7 +54,7 @@ import { OwnerWorkshopComponent } from './components/owner-workshop/owner-worksh
 import { OwnerNewWorkshopComponent } from './components/owner-new-workshop/owner-new-workshop.component';
 import { OwnerRepairOrderComponent } from './components/owner-repair-order/owner-repair-order.component';
 import { OwnerSettingsComponent } from './components/owner-settings/owner-settings.component';
-
+import { OwnerWorkshopReviewsComponent } from './components/owner-workshop-reviews/owner-workshop-reviews.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,7 +81,8 @@ import { OwnerSettingsComponent } from './components/owner-settings/owner-settin
     OwnerWorkshopComponent,
     OwnerNewWorkshopComponent,
     OwnerRepairOrderComponent,
-    OwnerSettingsComponent
+    OwnerSettingsComponent,
+    OwnerWorkshopReviewsComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +96,6 @@ import { OwnerSettingsComponent } from './components/owner-settings/owner-settin
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    NgbCarouselModule,
     FormsModule,
     ReactiveFormsModule,
     LayoutModule,

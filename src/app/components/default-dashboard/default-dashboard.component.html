@@ -1,24 +1,72 @@
-<div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            {{card.title}}
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-12 my-4 banner">
+            <img src="assets/super_banner.png" class="img-fluid w-100 img-border" alt="Super banner">
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-6 my-md-0 my-4">
+            <mat-card class="h-100">
+                <mat-card-title>Whats new?</mat-card-title>
+                <mat-card-subtitle>* recent updates</mat-card-subtitle>
+                <mat-card-content>
+                    <ul>
+                        <li class="my-2">Workshop owner can now control messages ~29.12.2021</li>
+                        <li class="my-2">New customer feedback funcionality ~28.12.2021</li>
+                        <li class="my-2">User homepage appearance was changed ~28.12.2021</li>
+                    </ul>
+                    <p>Best regards <b>CMech-Team</b></p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <mat-card *ngIf="repTitle; else noRepairBlock">
+                <mat-card-title>Lastest repair</mat-card-title>
+                <mat-card-subtitle>{{ repWorkshop }}</mat-card-subtitle>
+                <mat-card-content>
+                    <p>Status: <b>{{ repStatus }}</b></p>
+                    <p>Title: <b>{{ repTitle }}</b></p>
+                    <p>Description: <b>{{ repDescription }}</b></p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button (click)="openTrackingPage()">TRACKING PAGE</button>
+                </mat-card-actions>
+            </mat-card>
+            <ng-template #noRepairBlock>
+                <mat-card>
+                    <mat-card-title>Lastest repair</mat-card-title>
+                    <mat-card-content class="mt-4">
+                        <p>No recent repair order.</p>
+                    </mat-card-content>
+                </mat-card>
+            </ng-template>
+        </div>
+    </div>
+    <div class="row justify-content-center my-4">
+        <div class="col-lg-8">
+            <mat-card *ngIf="repWorkshop; else noWorkshopBlock">
+                <mat-card-title>Workshop review</mat-card-title>
+                <mat-card-subtitle>We value your opinion. Please, let us know what you think.</mat-card-subtitle>
+                <mat-card-content>
+                    <h3>{{ repWorkshop }}</h3>
+                    <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Leave a comment</mat-label>
+                        <textarea [maxLength]="255" matInput placeholder="Ex. I didn't like..."  [(ngModel)]="reviewContent"></textarea>
+                        <mat-hint align="end">{{reviewContent.length}} / 255</mat-hint>
+                    </mat-form-field>
+                    <div class="col-md-2 col-sm-3">
+                        <button mat-raised-button color="primary" class="w-100" (click)="addReview()" [disabled]="reviewContent === ''">Send</button>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            <ng-template #noWorkshopBlock>
+                <mat-card>
+                    <mat-card-title>Workshop review</mat-card-title>
+                    <mat-card-content class="mt-4">
+                        <p>A repair order is necessary, before you write a review.</p>
+                    </mat-card-content>
+                </mat-card>
+            </ng-template>
+        </div>
+    </div>
 </div>

@@ -64,20 +64,8 @@ export class OwnerRepairOrderComponent implements OnInit {
       this.messages = data.messages;
       this.messagesLength = data.messages.length;
     });
-    this.employeeService.getWorkshopRepairs().subscribe((data) => {
-      this.new.data = data.new;
-      this.in_progress.data = data.in_progress;
-      this.ready.data = data.ready;
-      this.new.paginator = this.new_paginator;
-      this.in_progress.paginator = this.in_pro_paginator;
-      this.ready.paginator = this.rdy_paginator;
-    });
-    this.employeeService.getRepairStatistics().subscribe((data) => {
-      this.new_count = data.new
-      this.progress_count = data.in_progress
-      this.ready_count = data.ready
-      this.workshop_name = data.workshop
-    })
+    this.loadRepairOrders()
+    this.loadStatistics()
     this.addMessageForm = this.formBuilder.group({
       content: [null, [Validators.required]],
       color: [null, [Validators.required]],
@@ -101,12 +89,11 @@ export class OwnerRepairOrderComponent implements OnInit {
     const dialogRef = this.dialog.open(NewRepairDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result == true) {
-        let currentUrl = this.router.url;
-        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-          this.router.navigate([currentUrl]);
-        });
+      if (result == true){
+        this.loadRepairOrders()
+        this.loadStatistics()
       }
+
     });
   }
 
@@ -121,7 +108,7 @@ export class OwnerRepairOrderComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result.data)
-        window.location.reload();
+        this.loadRepairOrders()
     });
   }
 
@@ -153,6 +140,23 @@ export class OwnerRepairOrderComponent implements OnInit {
         this.messagesLength = data.messages.length;
       });
     })
-
+  }
+  loadRepairOrders() {
+    this.employeeService.getWorkshopRepairs().subscribe((data) => {
+      this.new.data = data.new;
+      this.in_progress.data = data.in_progress;
+      this.ready.data = data.ready;
+      this.new.paginator = this.new_paginator;
+      this.in_progress.paginator = this.in_pro_paginator;
+      this.ready.paginator = this.rdy_paginator;
+    });
+  }
+  loadStatistics() {
+    this.employeeService.getRepairStatistics().subscribe((data) => {
+      this.new_count = data.new
+      this.progress_count = data.in_progress
+      this.ready_count = data.ready
+      this.workshop_name = data.workshop
+    })
   }
 }

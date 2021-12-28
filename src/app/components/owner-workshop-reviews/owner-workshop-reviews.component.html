@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-10 col-12">
+            <h1 class="my-4">Workshop Reviews</h1>
+
+            <div *ngIf="reviewLength != 0; else elseBlock">
+                <mat-card class="my-3" *ngFor="let review of reviews">
+                    <mat-card-title>
+                        <h3>
+                            {{review.created_at | date:'medium'}}
+                        </h3>
+                    </mat-card-title>
+                    <mat-card-content>
+                        {{review.content}}
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <ng-template #elseBlock>
+                <mat-card>
+                    <p>Your workshop doesn't have any reviews yet.</p>
+                    <p>They will probably appear here soon...</p>
+                </mat-card>
+            </ng-template>
+        </div>
+    </div>
+</div>
